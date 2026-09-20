@@ -1,0 +1,13 @@
+{
+  "name": "plugged-host-marketing",
+  "private": true,
+  "version": "3.0.0",
+  "description": "plugged.host marketing site (Vercel). Tailwind CSS v4 compiled locally, committed output.",
+  "scripts": {
+    "build:css": "tailwindcss -i ./assets/app.src.css -o ./assets/app.v3.css --minify",
+    "watch:css": "tailwindcss -i ./assets/app.src.css -o ./assets/app.v3.css --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "4.3.3"
+  }
+}

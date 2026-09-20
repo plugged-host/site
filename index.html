@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="plugged.host runs game servers, proxies and application runtimes on a health-checked fleet, managed from one modern control panel. Live capacity and status, published openly.">
+  <meta name="theme-color" content="#0b0d10">
+
+  <meta property="og:title" content="plugged.host — host what you build">
+  <meta property="og:description" content="Game servers, proxies and application runtimes on a health-checked fleet, managed from one modern control panel.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://plugged.host/">
+  <meta property="og:image" content="https://plugged.host/assets/plugged.host.png">
+  <title>plugged.host — host what you build</title>
+  <link rel="icon" href="/assets/plugged.host.png" type="image/png">
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/app.v3.css">
+  <script src="/assets/app.v3.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="bg-aura" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-grain" aria-hidden="true"></div>
+  <div class="rail" aria-hidden="true" data-progress><i></i></div>
+
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Primary navigation">
+      <a class="brand" href="/" aria-label="plugged.host home">
+        <img src="/assets/plugged.host.png" alt="">
+        <span>plugged<span class="brand-dot">.</span>host</span>
+      </a>
+      <div class="nav-links">
+        <a href="#run">What you can run</a>
+        <a href="#allocation">Allocation</a>
+        <a href="#panel">Panel</a>
+        <a href="https://status.plugged.host">Status</a>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.2A8.5 8.5 0 0 1 8.8 4 8.5 8.5 0 1 0 20 15.2Z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+        </button>
+        <a class="button small" href="https://panel.plugged.host">Open panel</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- ------------------------------------------------------------- hero -->
+    <section class="hero">
+      <div class="hero-grid shell">
+        <div class="hero-copy">
+          <p class="eyebrow">
+            <i class="pulse s-unknown" data-fleet="status-dot"></i>
+            <span data-fleet="status-label">Checking live status…</span>
+          </p>
+          <h1 data-split>Host what you <span class="grad">build.</span></h1>
+          <p class="hero-lead">Game worlds, proxies, bots and small services — running on a real fleet you can inspect, managed from one control panel instead of a pile of disconnected tools.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="https://panel.plugged.host">Launch the panel <span class="arrow" aria-hidden="true">↗</span></a>
+            <a class="button" href="https://discord.gg/RuzP2yaRrN">Join our Discord</a>
+          </div>
+          <ul class="hero-facts" data-reveal="fade">
+            <li><b>Free</b> to use today</li>
+            <li><b><span data-fleet="nodes-total">—</span> nodes</b> probed every minute</li>
+            <li><b>Open</b> status &amp; uptime history</li>
+          </ul>
+        </div>
+
+        <div class="fleet-wrap" data-reveal="scale">
+          <div class="fleet" data-tilt>
+            <canvas class="fleet-canvas" data-fleet-canvas aria-hidden="true"></canvas>
+            <span class="fleet-badge">
+              <i class="pulse s-unknown" data-fleet="status-dot"></i>
+              <span data-fleet="nodes-online">—</span>/<span data-fleet="nodes-total">—</span> nodes reporting
+            </span>
+            <span class="fleet-stamp mono" data-fleet="updated"></span>
+            <div class="fleet-read">
+              <div class="read">
+                <span class="read-k">CPU</span>
+                <strong class="read-v mono" data-fleet="cpu-pct">—</strong>
+                <div class="meter" data-meter="cpu" role="progressbar" aria-label="Fleet CPU utilization" aria-valuemin="0" aria-valuemax="100"><i></i></div>
+              </div>
+              <div class="read">
+                <span class="read-k">Memory</span>
+                <strong class="read-v mono" data-fleet="memory-pct">—</strong>
+                <div class="meter" data-meter="memory" role="progressbar" aria-label="Fleet memory utilization" aria-valuemin="0" aria-valuemax="100"><i></i></div>
+              </div>
+              <div class="read">
+                <span class="read-k">Storage</span>
+                <strong class="read-v mono" data-fleet="storage-pct">—</strong>
+                <div class="meter" data-meter="storage" role="progressbar" aria-label="Fleet storage utilization" aria-valuemin="0" aria-valuemax="100"><i></i></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------- fleet -->
+    <section class="section tint" id="fleet">
+      <div class="shell">
+        <div class="section-head wide" data-reveal>
+          <div>
+            <p class="kicker">01 — The fleet</p>
+            <h2>Capacity you can count, not adjectives.</h2>
+          </div>
+          <p>Every number below is read from the same monitoring export that powers <a href="https://status.plugged.host">status.plugged.host</a>. The panel probes each node every minute and publishes the result — aliases and metrics only, never hostnames or addresses.</p>
+        </div>
+
+        <div class="stats" data-stagger="90">
+          <div class="stat" data-reveal>
+            <span class="stat-k">Nodes</span>
+            <span class="stat-v"><span class="num" data-count="0" data-fleet="nodes">—</span></span>
+            <p class="stat-note">Independent machines, each health-checked once a minute.</p>
+          </div>
+          <div class="stat" data-reveal>
+            <span class="stat-k">CPU threads</span>
+            <span class="stat-v"><span class="num" data-count="0" data-fleet="threads">—</span></span>
+            <p class="stat-note">Total scheduling budget across the fleet.</p>
+          </div>
+          <div class="stat" data-reveal>
+            <span class="stat-k">Memory</span>
+            <span class="stat-v"><span class="num" data-count="0" data-decimals="2" data-fleet="memory-total">—</span><span class="unit">TB</span></span>
+            <p class="stat-note"><span data-fleet="memory-free">—</span> right now.</p>
+          </div>
+          <div class="stat" data-reveal>
+            <span class="stat-k">Storage</span>
+            <span class="stat-v"><span class="num" data-count="0" data-decimals="1" data-fleet="storage-total">—</span><span class="unit">TB</span></span>
+            <p class="stat-note"><span data-fleet="storage-free">—</span> right now.</p>
+          </div>
+        </div>
+
+        <div class="marquee" data-reveal="fade">
+          <div class="marquee-track" aria-hidden="true">
+            <span>Minecraft: Java Edition</span><span>Paper</span><span>Spigot</span><span>Purpur</span><span>Minecraft: Bedrock</span><span>Velocity</span><span>FiveM</span><span>RedM</span><span>txAdmin</span><span>Node.js</span><span>Python</span><span>Go</span><span>Rust</span><span>MariaDB</span><span>SFTP</span><span>Scheduled tasks</span><span>Backups</span>
+            <span>Minecraft: Java Edition</span><span>Paper</span><span>Spigot</span><span>Purpur</span><span>Minecraft: Bedrock</span><span>Velocity</span><span>FiveM</span><span>RedM</span><span>txAdmin</span><span>Node.js</span><span>Python</span><span>Go</span><span>Rust</span><span>MariaDB</span><span>SFTP</span><span>Scheduled tasks</span><span>Backups</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------- run -->
+    <section class="section" id="run">
+      <div class="shell">
+        <div class="section-head" data-reveal>
+          <p class="kicker">02 — What you can run</p>
+          <h2>Eight images, ready when you are.</h2>
+          <p>Pick one when you create a server and the panel installs it for you. Game servers get their own port; the generic runtimes are there for bots, APIs and anything else you write yourself.</p>
+        </div>
+
+        <div class="grid-4" data-stagger="70">
+          <article class="card" data-reveal>
+            <div class="card-glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8v8a2 2 0 0 1-1 1.73l-7 4a2 2 0 0 1-2 0l-7-4A2 2 0 0 1 3 16V8a2 2 0 0 1 1-1.73l7-4a2 2 0 0 1 2 0l7 4A2 2 0 0 1 21 8Z"/><path d="M3.3 7 12 12l8.7-5"/><path d="M12 22V12"/></svg></div>
+            <h3>Minecraft: Java</h3>
+            <p>Vanilla, Paper, Spigot or Purpur from a single image, with the jar and version chosen in startup settings.</p>
+            <span class="card-tag">Game server</span>
+          </article>
+          <article class="card" data-reveal>
+            <div class="card-glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 10 5-10 5L2 7Z"/><path d="m2 12 10 5 10-5"/><path d="m2 17 10 5 10-5"/></svg></div>
+            <h3>Minecraft: Bedrock</h3>
+            <p>The official Bedrock dedicated server, for players on console, mobile and Windows.</p>
+            <span class="card-tag">Game server</span>
+          </article>
+          <article class="card" data-reveal>
+            <div class="card-glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 3h5v5"/><path d="M4 20 21 3"/><path d="M21 16v5h-5"/><path d="m15 15 6 6"/><path d="m4 4 5 5"/></svg></div>
+            <h3>Velocity</h3>
+            <p>Put a proxy in front of several Minecraft servers and move players between them without a reconnect.</p>
+            <span class="card-tag">Proxy</span>
+          </article>
+          <article class="card" data-reveal>
+            <div class="card-glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12h.01"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49M7.76 16.25a6 6 0 0 1 0-8.49"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 19.07a10 10 0 0 1 0-14.14"/></svg></div>
+            <h3>FiveM / RedM</h3>
+            <p>CFX roleplay servers. These get a second port automatically so txAdmin comes up alongside the server.</p>
+            <span class="card-tag">Game server</span>
+          </article>
+          <article class="card" data-reveal>
+            <div class="card-glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/></svg></div>
+            <h3>Node.js</h3>
+            <p>A generic runtime for Discord bots, web APIs and anything else that starts with a package manifest.</p>
+            <span class="card-tag">Runtime</span>
+          </article>
+          <article class="card" data-reveal>
+            <div class="card-glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></svg></div>
+            <h3>Python</h3>
+            <p>Bots, scrapers, schedulers and small services, with your dependencies installed on boot.</p>
+            <span class="card-tag">Runtime</span>
+          </article>
+          <article class="card" data-reveal>
+            <div class="card-glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v2m6-2v2M9 20v2m6-2v2M2 9h2m-2 6h2m16-6h2m-2 6h2"/></svg></div>
+            <h3>Go</h3>
+            <p>Build and run a compiled service without maintaining a toolchain on your own machine.</p>
+            <span class="card-tag">Runtime</span>
+          </article>
+          <article class="card" data-reveal>
+            <div class="card-glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z"/></svg></div>
+            <h3>Rust</h3>
+            <p>The Rust toolchain image, for services where you want the compiled binary doing the work.</p>
+            <span class="card-tag">Runtime</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------ allocation -->
+    <section class="section tint" id="allocation">
+      <div class="shell alloc">
+        <div data-reveal>
+          <p class="kicker">03 — Your allocation</p>
+          <h2>A real budget, stated up front.</h2>
+          <p class="hero-lead">New accounts get the allocation on the right. CPU, memory and disk are a pool: spend it on one large server or spread it across several small ones, however you like. There's no cap on how many servers you create — only on the total resources they hold.</p>
+          <p class="alloc-note">Allocations depend on available capacity and can change as the fleet does, as set out in our <a href="/terms">Terms</a>. They're a ceiling, not a performance guarantee.</p>
+        </div>
+
+        <dl class="alloc-list" data-stagger="80">
+          <div class="alloc-row" data-reveal="right">
+            <dt>CPU<small>400% of a thread — roughly four threads</small></dt>
+            <dd>400<span class="unit">%</span></dd>
+          </div>
+          <div class="alloc-row" data-reveal="right">
+            <dt>Memory<small>Shared across every server you create</small></dt>
+            <dd>12,288<span class="unit">MB</span></dd>
+          </div>
+          <div class="alloc-row" data-reveal="right">
+            <dt>Disk<small>Shared across every server you create</small></dt>
+            <dd>51,200<span class="unit">MB</span></dd>
+          </div>
+          <div class="alloc-row" data-reveal="right">
+            <dt>Databases<small>MariaDB, per server</small></dt>
+            <dd>5</dd>
+          </div>
+          <div class="alloc-row" data-reveal="right">
+            <dt>Ports<small>Network allocations, per server</small></dt>
+            <dd>5</dd>
+          </div>
+          <div class="alloc-row" data-reveal="right">
+            <dt>Backups<small>Per server, restore or download any of them</small></dt>
+            <dd>5</dd>
+          </div>
+          <div class="alloc-row" data-reveal="right">
+            <dt>Servers<small>Capped by the resource pool, not by count</small></dt>
+            <dd>Unlimited</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------- panel -->
+    <section class="section" id="panel">
+      <div class="shell">
+        <div class="section-head" data-reveal>
+          <p class="kicker">04 — The control panel</p>
+          <h2>One place for the whole lifecycle.</h2>
+          <p>Everything below lives behind a single sign-in at <a href="https://panel.plugged.host">panel.plugged.host</a>. Scroll to walk through it.</p>
+        </div>
+
+        <div class="scrolly" data-scrolly>
+          <div class="scrolly-steps">
+            <article class="step on" data-step>
+              <span class="step-i">STEP 01</span>
+              <h3>Console and power</h3>
+              <p>Start, stop, restart or kill a server and watch its output stream in as it happens. CPU, memory and disk usage sit next to the console so you can see the cost of what you just did.</p>
+              <ul class="step-meta"><li>Live console</li><li>Power actions</li><li>Resource graphs</li></ul>
+            </article>
+            <article class="step" data-step>
+              <span class="step-i">STEP 02</span>
+              <h3>Files, in the browser or over SFTP</h3>
+              <p>Browse and edit configuration in place, upload a world or a build, unpack archives server-side, and pull files straight from a URL. When the browser is the wrong tool, connect over SFTP with your panel credentials.</p>
+              <ul class="step-meta"><li>Editor</li><li>Uploads</li><li>Archives</li><li>SFTP</li></ul>
+            </article>
+            <article class="step" data-step>
+              <span class="step-i">STEP 03</span>
+              <h3>Databases and ports</h3>
+              <p>Create up to five MariaDB databases per server and get the credentials immediately. Add extra network ports when one isn't enough — a plugin server, a voice bridge, a metrics endpoint.</p>
+              <ul class="step-meta"><li>5 databases</li><li>5 ports</li><li>Credentials on demand</li></ul>
+            </article>
+            <article class="step" data-step>
+              <span class="step-i">STEP 04</span>
+              <h3>Backups and schedules</h3>
+              <p>Keep up to five backups per server and restore or download any of them. Schedules run the boring work for you on a cron expression: restart overnight, back up before a patch, send a command on a timer.</p>
+              <ul class="step-meta"><li>5 backups</li><li>Restore &amp; download</li><li>Cron schedules</li></ul>
+            </article>
+            <article class="step" data-step>
+              <span class="step-i">STEP 05</span>
+              <h3>People and accountability</h3>
+              <p>Invite subusers and grant only the permissions they need — console but not files, backups but not deletion. Every action lands in an activity log, so a shared server stays answerable.</p>
+              <ul class="step-meta"><li>Subusers</li><li>Granular permissions</li><li>Activity log</li></ul>
+            </article>
+          </div>
+
+          <div class="scrolly-stage">
+            <div class="stage on" data-stage>
+              <svg viewBox="0 0 64 64" aria-hidden="true">
+                <rect class="d" x="6" y="12" width="52" height="40" rx="6" pathLength="1"/>
+                <path class="d" d="M6 23h52" pathLength="1"/>
+                <path class="d" d="m18 33 6 5-6 5" pathLength="1"/>
+                <path class="d" d="M30 43h15" pathLength="1"/>
+                <path class="d" d="M12 17.5h.01" pathLength="1"/>
+              </svg>
+              <strong>Console and power</strong>
+              <span>Stream output live and act on it in the same view.</span>
+            </div>
+            <div class="stage" data-stage>
+              <svg viewBox="0 0 64 64" aria-hidden="true">
+                <path class="d" d="M8 20a4 4 0 0 1 4-4h11l5 6h20a4 4 0 0 1 4 4v22a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4Z" pathLength="1"/>
+                <path class="d" d="M20 34h24" pathLength="1"/>
+                <path class="d" d="M20 42h16" pathLength="1"/>
+              </svg>
+              <strong>Files and SFTP</strong>
+              <span>Edit in place, or connect a real client when you need one.</span>
+            </div>
+            <div class="stage" data-stage>
+              <svg viewBox="0 0 64 64" aria-hidden="true">
+                <ellipse class="d" cx="32" cy="15" rx="18" ry="7" pathLength="1"/>
+                <path class="d" d="M14 15v17c0 3.9 8.1 7 18 7s18-3.1 18-7V15" pathLength="1"/>
+                <path class="d" d="M14 32v16c0 3.9 8.1 7 18 7s18-3.1 18-7V32" pathLength="1"/>
+              </svg>
+              <strong>Databases and ports</strong>
+              <span>Five databases and five ports per server, on request.</span>
+            </div>
+            <div class="stage" data-stage>
+              <svg viewBox="0 0 64 64" aria-hidden="true">
+                <path class="d" d="M32 12a20 20 0 1 1-19.3 25" pathLength="1"/>
+                <path class="d" d="M12 25v11h11" pathLength="1"/>
+                <path class="d" d="M32 24v9l7 4" pathLength="1"/>
+              </svg>
+              <strong>Backups and schedules</strong>
+              <span>Five restore points, plus cron jobs for the routine.</span>
+            </div>
+            <div class="stage" data-stage>
+              <svg viewBox="0 0 64 64" aria-hidden="true">
+                <circle class="d" cx="24" cy="23" r="8" pathLength="1"/>
+                <path class="d" d="M10 48c0-7.7 6.3-14 14-14s14 6.3 14 14" pathLength="1"/>
+                <path class="d" d="M42 17a7 7 0 0 1 0 14" pathLength="1"/>
+                <path class="d" d="M46 48c0-5.2-1.7-10-4.6-13.5" pathLength="1"/>
+              </svg>
+              <strong>People and accountability</strong>
+              <span>Scoped access, with a log of who did what.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------- ops -->
+    <section class="section tint" id="ops">
+      <div class="shell">
+        <div class="section-head" data-reveal>
+          <p class="kicker">05 — Operations in the open</p>
+          <h2>We publish the bad days too.</h2>
+        </div>
+
+        <div class="ops">
+          <ul class="ops-points" data-stagger="90">
+            <li data-reveal="left">
+              <span class="tick"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m20 6-11 11-5-5"/></svg></span>
+              <div><strong>Checked every minute</strong><p>The panel probes the website, itself and every node on a one-minute schedule, then writes the result to a static feed.</p></div>
+            </li>
+            <li data-reveal="left">
+              <span class="tick"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m20 6-11 11-5-5"/></svg></span>
+              <div><strong>Utilization, not vibes</strong><p>Per-node CPU, memory and storage are published as numbers. A node above 90% utilization is reported as degraded, automatically.</p></div>
+            </li>
+            <li data-reveal="left">
+              <span class="tick"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m20 6-11 11-5-5"/></svg></span>
+              <div><strong>Incidents on the record</strong><p>Open incidents override component status, and every update stays visible afterwards — including over <a href="https://status.plugged.host/feed.xml">RSS</a>.</p></div>
+            </li>
+            <li data-reveal="left">
+              <span class="tick"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m20 6-11 11-5-5"/></svg></span>
+              <div><strong>Sanitized by design</strong><p>The public feed carries node aliases and metrics only. Hostnames, addresses and port allocations never leave the panel.</p></div>
+            </li>
+          </ul>
+
+          <div class="uptime" data-uptime>
+            <article class="uprow">
+              <div class="uprow-head"><strong>Website</strong><span>loading…</span></div>
+              <p class="uprow-foot">Fetching recorded uptime from the monitoring feed.</p>
+            </article>
+            <article class="uprow">
+              <div class="uprow-head"><strong>Panel</strong><span>loading…</span></div>
+              <p class="uprow-foot">Fetching recorded uptime from the monitoring feed.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------- faq -->
+    <section class="section" id="faq">
+      <div class="shell">
+        <div class="section-head" data-reveal>
+          <p class="kicker">06 — Straight answers</p>
+          <h2>The questions people actually ask.</h2>
+        </div>
+
+        <div class="faq" data-stagger="60">
+          <details class="qa" data-reveal="fade">
+            <summary>Is it really free?</summary>
+            <div class="qa-body"><div><p>Yes — the service is provided without charge today, and nothing here authorizes a recurring payment. Capacity is finite, so allocations can be adjusted or reclaimed to keep the fleet healthy. If paid plans ever arrive, they'll come with their own terms shown before you buy.</p></div></div>
+          </details>
+          <details class="qa" data-reveal="fade">
+            <summary>How do I sign in?</summary>
+            <div class="qa-body"><div><p>Email and password, or Discord. You can add a passkey or a two-factor app to your account afterwards. Registration and sign-in are protected by Cloudflare Turnstile, and both ask you to accept the current <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>.</p></div></div>
+          </details>
+          <details class="qa" data-reveal="fade">
+            <summary>Can I run something that isn't on the list?</summary>
+            <div class="qa-body"><div><p>Often, yes — the Node.js, Python, Go and Rust images are general-purpose, so anything you can start from a repository will usually work inside your allocation. Crypto mining and similar workloads need written permission first; the <a href="/terms#acceptable-use">Acceptable Use Policy</a> has the full list of what's off-limits.</p></div></div>
+          </details>
+          <details class="qa" data-reveal="fade">
+            <summary>Are my backups safe?</summary>
+            <div class="qa-body"><div><p>You get five backup slots per server and can restore or download any of them, but treat them as a convenience rather than an archive. Keep an independent copy of anything you'd hate to lose — we say the same thing in the Terms, and we mean it.</p></div></div>
+          </details>
+          <details class="qa" data-reveal="fade">
+            <summary>Who runs this, and where do I get help?</summary>
+            <div class="qa-body"><div><p>plugged.host is operated from Paris, France. Support happens in our <a href="https://discord.gg/RuzP2yaRrN">Discord</a> — open a private ticket for anything involving your account, and keep credentials and personal data out of public channels.</p></div></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------- cta -->
+    <section class="section">
+      <div class="shell">
+        <div class="cta" data-reveal="scale">
+          <p class="kicker">Ready when you are</p>
+          <h2>Give your next project somewhere to live.</h2>
+          <p>Create an account, pick an image, and you'll have a server with an address in a couple of minutes. Bring questions to Discord — someone is usually around.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="https://panel.plugged.host">Open the panel <span class="arrow" aria-hidden="true">↗</span></a>
+            <a class="button" href="https://status.plugged.host">View system status</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid shell">
+      <span>© <span data-year>2026</span> plugged.host — Paris, France</span>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="/terms">Terms</a>
+        <a href="/privacy">Privacy</a>
+        <a href="https://status.plugged.host">Status</a>
+        <a href="https://status.plugged.host/feed.xml">Incident feed</a>
+        <a href="https://discord.gg/RuzP2yaRrN">Discord</a>
+        <a href="https://panel.plugged.host">Panel</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
