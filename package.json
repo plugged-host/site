@@ -2,7 +2,7 @@
   "name": "plugged-host-marketing",
   "private": true,
   "version": "3.0.0",
-  "description": "plugged.host marketing site (Cloudflare Pages, /data proxy in functions/). Tailwind CSS v4 compiled locally, committed output.",
+  "description": "plugged.host marketing site on Cloudflare Workers assets (/data proxy in worker.js). Tailwind CSS v4 compiled locally, committed output.",
   "scripts": {
     "build:css": "tailwindcss -i ./assets/app.src.css -o ./assets/app.v3.css --minify",
     "watch:css": "tailwindcss -i ./assets/app.src.css -o ./assets/app.v3.css --watch"

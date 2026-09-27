@@ -1,5 +1,5 @@
-# Cloudflare Pages headers. /data/* is served by a Pages Function (functions/),
-# which sets its own headers — Pages does not apply this file to Function responses.
+# Static-asset headers (Cloudflare Workers assets). /data/* is answered by
+# worker.js, which sets its own headers — this file does not apply to Worker responses.
 /*
   Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://panel.plugged.host https://plugged.host; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
   X-Content-Type-Options: nosniff
