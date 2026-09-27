@@ -5,7 +5,7 @@
      export PATH="/root/.nvm/versions/node/v26.9.0/bin:$PATH"
      cd /var/www/html && npm install && npm run build:css
 
-   The vhost/Vercel CSP is style-src 'self' with no 'unsafe-inline', so nothing
+   The vhost/Pages CSP is style-src 'self' with no 'unsafe-inline', so nothing
    here or in app.v3.js may emit an inline <style> or a style="" attribute. The
    only dynamic values (meter widths, reveal delays, tilt, counters) ride custom
    properties that app.v3.js writes through the CSSOM against the @property --p
