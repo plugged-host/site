@@ -12,3 +12,4 @@ worker.js
 netlify.toml
 vercel.json
 assets/*.src.css
+README.md
