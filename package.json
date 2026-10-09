@@ -9,5 +9,8 @@
   },
   "devDependencies": {
     "@tailwindcss/cli": "4.3.3"
+  },
+  "engines": {
+    "node": ">=26"
   }
 }
