@@ -5,30 +5,44 @@
    wrangler.jsonc and for paths with no matching asset (which get the assets'
    404).
 
-   /data/* and /feed.xml proxy the panel's status export: _redirects cannot
-   proxy to another host, and _headers does not apply to Worker responses, so
-   the headers the page relies on are set here. Only a single exported file
-   name is accepted (no slashes), so this can never reach any other panel
-   route. When the panel is unreachable the page falls back to fetching it
-   cross-origin itself.
+   /data/* is the status data, produced by the status Worker (status-plugged),
+   which probes from outside the panel box and so keeps answering while the
+   panel is down. It is asked through the STATUS service binding first, then
+   over HTTPS at STATUS_URL. _headers does not apply to Worker responses, so
+   the headers the page relies on are set here (the status Worker sets the
+   same ones). Only a single file name is accepted (no slashes). When both
+   fail, the page falls back to fetching the panel cross-origin itself. */
 
-   Kept verbatim-identical in html/ and status/. */
-
-const PANEL = 'https://panel.plugged.host';
+const STATUS = 'https://status.plugged.host';
 const DATA = /^\/data\/([a-z0-9_-]+\.(json|xml))$/;
 const TYPES = {
     json: 'application/json; charset=utf-8',
     xml: 'application/rss+xml; charset=utf-8',
 };
 
-async function proxyPanelData(request, file, extension) {
+async function statusData(request, env, file, extension) {
     if (request.method !== 'GET' && request.method !== 'HEAD') {
         return new Response(null, { status: 405, headers: { Allow: 'GET, HEAD' } });
     }
 
+    const url = `${String(env.STATUS_URL || STATUS).replace(/\/+$/, '')}/data/${file}`;
+
+    /* A clean request (no client headers), addressed to the status host so
+       both sites share the status Worker's cached copies. A 404 or 405 is an
+       answer; only a 5xx or an exception falls through. */
+    if (env.STATUS) {
+        try {
+            const bound = await env.STATUS.fetch(new Request(url, { method: request.method }));
+            if (bound.status < 500) return bound;
+            bound.body?.cancel().catch(() => {});
+        } catch {
+            /* binding unavailable: try the public URL */
+        }
+    }
+
     let upstream;
     try {
-        upstream = await fetch(`${PANEL}/data/${file}`, { method: request.method });
+        upstream = await fetch(url, { method: request.method, signal: AbortSignal.timeout(8000) });
     } catch {
         upstream = null;
     }
@@ -36,6 +50,7 @@ async function proxyPanelData(request, file, extension) {
     /* Never relay an upstream error body (e.g. a challenge page) under this
        origin; the page only needs the status to decide on its fallback. */
     if (!upstream || !upstream.ok) {
+        upstream?.body?.cancel().catch(() => {});
         return new Response(null, { status: upstream?.status === 404 ? 404 : 502 });
     }
 
@@ -55,8 +70,7 @@ export default {
         const { pathname } = new URL(request.url);
 
         const data = DATA.exec(pathname);
-        if (data) return proxyPanelData(request, data[1], data[2]);
-        if (pathname === '/feed.xml') return proxyPanelData(request, 'feed.xml', 'xml');
+        if (data) return statusData(request, env, data[1], data[2]);
 
         return env.ASSETS.fetch(request);
     },

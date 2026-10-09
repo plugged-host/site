@@ -1,6 +1,6 @@
 // Cloudflare Workers + static assets. No build step: the repo root is the asset
 // directory (.assetsignore keeps tooling and sources out of the upload), and
-// worker.js only runs for the panel-data proxy routes and unmatched paths.
+// worker.js only runs for the status-data routes and unmatched paths.
 // "name" must match the Worker's name in the Cloudflare dashboard.
 {
     "name": "site-plugged",
@@ -10,6 +10,13 @@
         "directory": ".",
         "binding": "ASSETS",
         "run_worker_first": ["/data/*"]
+    },
+    // /data/* comes from the status Worker (status/ repo), which keeps
+    // answering while the panel is down. STATUS_URL is the fallback when the
+    // binding is unavailable.
+    "services": [{ "binding": "STATUS", "service": "status-plugged" }],
+    "vars": {
+        "STATUS_URL": "https://status.plugged.host"
     },
     "observability": {
         "enabled": true
