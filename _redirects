@@ -1,5 +1,5 @@
-# Static-asset redirects (Cloudflare Workers assets). /data/* is proxied to the
-# panel by worker.js — _redirects cannot proxy to another host.
+# Static-asset redirects (Cloudflare Workers assets). /data/* is answered by
+# worker.js from the status Worker — _redirects cannot proxy to another host.
 # The Terms and the Privacy Policy moved to noprofit.space, which runs plugged.host.
 /terms         https://noprofit.space/terms    301
 /terms.html    https://noprofit.space/terms    301
