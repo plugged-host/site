@@ -111,7 +111,16 @@ function setStatus(status, label) {
     setText('status-label', label);
 }
 
+// The release the panel runs (current.json "release", e.g. v2.1.0.43eb9c9), after the copyright.
+function showRelease(release) {
+    const el = document.querySelector('[data-release]');
+    if (!el || typeof release !== 'string' || !/^v\d+\.\d+\.\d+(\.[0-9a-f]{4,40})?$/.test(release)) return;
+    el.textContent = ` · ${release}`;
+    el.hidden = false;
+}
+
 function renderFleet(data) {
+    showRelease(data.release);
     const generated = new Date(data.generated_at).valueOf();
     const stale = !Number.isFinite(generated) || Date.now() - generated > STALE_AFTER;
     const status = stale ? 'unknown' : (data.overall?.status || 'unknown');
