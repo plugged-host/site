@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How to use neo, the AI assistant in the plugged.host panel: what it can do on your servers, how approvals work, its settings and its fair-use limits.">
+  <meta name="theme-color" content="#0b0d10">
+  <meta name="google-adsense-account" content="ca-pub-6451683229074986">
+  <link rel="canonical" href="https://plugged.host/guides/neo">
+
+  <meta property="og:title" content="Get things done with neo, the panel assistant · plugged.host">
+  <meta property="og:description" content="How to use neo, the AI assistant in the plugged.host panel: what it can do on your servers, how approvals work, its settings and its fair-use limits.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://plugged.host/guides/neo">
+  <meta property="og:image" content="https://plugged.host/assets/plugged.host-v3.png">
+  <title>Get things done with neo, the panel assistant · plugged.host</title>
+  <link rel="icon" href="/assets/plugged.host-96-v3.png" type="image/png">
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/app.v5.css">
+  <script src="/assets/app.v5.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Primary">
+      <a class="brand" href="/" aria-label="plugged.host home">
+        <img src="/assets/plugged.host-96-v3.png" alt="" width="32" height="32">
+        <span>plugged<em>.</em>host</span>
+      </a>
+      <div class="nav-links">
+        <a href="/#neo">neo</a>
+        <a href="/#run">What you can run</a>
+        <a href="/#allocation">Allocation</a>
+        <a href="/#plus">Plus</a>
+        <a href="/guides/">Guides</a>
+        <a href="/#faq">FAQ</a>
+        <a href="https://status.plugged.host">Status</a>
+      </div>
+      <div class="nav-actions">
+        <button class="icon-button" type="button" data-theme-toggle aria-label="Switch theme" title="Switch theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.2A8.5 8.5 0 0 1 8.8 4 8.5 8.5 0 1 0 20 15.2Z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+        </button>
+        <a class="button small" href="https://panel.plugged.host">Open panel</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="page">
+    <div class="shell">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/guides/">Guides</a><span aria-hidden="true">/</span><span>Using the panel</span></nav>
+      <header class="page-head">
+        <h1>Get things done with neo</h1>
+        <p class="lead">neo is the assistant built into the plugged.host panel. Tell it what you want in plain words, and it does the work on your server instead of explaining how.</p>
+        <p class="page-meta">Updated 12 October 2026</p>
+      </header>
+      <article class="prose">
+        <h2>Start a conversation</h2>
+        <ol>
+          <li>Open the panel and choose <strong>Ask neo</strong>, in the corner of the dashboard and of every server's pages.</li>
+          <li>The first time, read <strong>Before you start</strong> and choose <strong>Got it, start</strong>. If your account isn't connected yet, choose <strong>Activate neo</strong>.</li>
+          <li>Type what you want. When you are on a server's page, neo knows which server you mean.</li>
+        </ol>
+
+        <h2>What to ask</h2>
+        <p>neo reads your server's console, files and settings, and can act on them. Some things it does well:</p>
+        <ul>
+          <li>"Install LuckPerms and EssentialsX."</li>
+          <li>"Switch this server to Fabric 1.21.1 and install the Fabulously Optimized modpack."</li>
+          <li>"My server crashes on start, find out why and fix it."</li>
+          <li>"Set the difficulty to hard and the view distance to 8."</li>
+          <li>"Back up the server, then delete the nether."</li>
+          <li>"Create a new Python server for my bot with 2 GB of memory."</li>
+        </ul>
+        <p>When the log check on a Minecraft server's console finds a problem, <strong>Ask neo to fix it</strong> hands the problem straight to neo.</p>
+
+        <h2>You approve the risky parts</h2>
+        <p>By default, neo asks before it edits or deletes files, runs console commands, or starts and stops a server. Reading never needs approval. You see exactly what it wants to do and choose whether it goes ahead.</p>
+        <p>If you trust it with routine changes, open <strong>neo settings</strong> (the gear in neo's window) and turn on <strong>Let neo make changes without asking</strong>. Even then, restoring a backup, deleting a server and spending your tokens always wait for your approval. <strong>Enable neo</strong> in the same place turns it off completely.</p>
+
+        <h2>Limits</h2>
+        <p>neo is free. Fair-use limits apply, counted over a five-hour window and a weekly window; when you reach one, neo says so and tells you when it is available again. plugged.host Plus raises both by a quarter, and PlusPlus by another quarter on top.</p>
+
+        <h2>Good to know</h2>
+        <ul>
+          <li>neo is an AI. It is usually right but not always, so read what it proposes before you approve it, and keep <a href="/guides/backups-and-schedules">backups</a>.</li>
+          <li>Your messages, and the server information neo reads to answer them, are processed by AI model providers; the <a href="https://noprofit.space/privacy">Privacy Policy</a> explains how. Don't paste passwords or tokens into the chat.</li>
+          <li>Subusers can use neo on a shared server only if you give them the <strong>neo</strong> permission.</li>
+        </ul>
+      </article>
+      <section class="related" aria-labelledby="related-title">
+        <h2 id="related-title">Related guides</h2>
+        <div class="link-list">
+          <a href="/guides/sftp"><strong>Connect to your server over SFTP</strong><span>Find your SFTP details and connect with FileZilla, WinSCP or Cyberduck to move many or large files.</span></a>
+          <a href="/guides/backups-and-schedules"><strong>Back up, restore and schedule</strong><span>Create, lock, download and restore backups, and let schedules back up and restart your server for you.</span></a>
+          <a href="/guides/databases"><strong>Create a database for your server</strong><span>A MariaDB database for plugins, FiveM frameworks and bots, with its credentials one click away.</span></a>
+          <a href="/guides/move-a-server"><strong>Move your server to another location</strong><span>Move a server closer to your players yourself. Files, worlds and backups come along.</span></a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <span>© <span data-year>2026</span> plugged.host · run by noprofit.space<span data-release hidden></span></span>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="/guides/">Guides</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="https://noprofit.space/terms">Terms</a>
+        <a href="https://noprofit.space/privacy">Privacy</a>
+        <a href="https://status.plugged.host">Status</a>
+        <a href="https://discord.gg/plugged-host-1502647500295635085">Discord</a>
+        <a href="https://panel.plugged.host">Panel</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

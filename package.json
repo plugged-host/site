@@ -4,8 +4,8 @@
   "version": "3.0.0",
   "description": "plugged.host marketing site on Cloudflare Workers assets (/data proxy in worker.js). Tailwind CSS v4 compiled locally, committed output.",
   "scripts": {
-    "build:css": "tailwindcss -i ./assets/app.src.css -o ./assets/app.v4.css --minify",
-    "watch:css": "tailwindcss -i ./assets/app.src.css -o ./assets/app.v4.css --watch"
+    "build:css": "tailwindcss -i ./assets/app.src.css -o ./assets/app.v5.css --minify",
+    "watch:css": "tailwindcss -i ./assets/app.src.css -o ./assets/app.v5.css --watch"
   },
   "devDependencies": {
     "@tailwindcss/cli": "4.3.3"

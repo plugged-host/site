@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How to create a free Minecraft Bedrock Edition dedicated server on plugged.host, set its game mode and difficulty, manage the allowlist and let players on phones, Windows and consoles join.">
+  <meta name="theme-color" content="#0b0d10">
+  <meta name="google-adsense-account" content="ca-pub-6451683229074986">
+  <link rel="canonical" href="https://plugged.host/guides/minecraft-bedrock-server">
+
+  <meta property="og:title" content="Run a Minecraft Bedrock server · plugged.host">
+  <meta property="og:description" content="How to create a free Minecraft Bedrock Edition dedicated server on plugged.host, set its game mode and difficulty, manage the allowlist and let players on phones, Windows and consoles join.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://plugged.host/guides/minecraft-bedrock-server">
+  <meta property="og:image" content="https://plugged.host/assets/plugged.host-v3.png">
+  <title>Run a Minecraft Bedrock server · plugged.host</title>
+  <link rel="icon" href="/assets/plugged.host-96-v3.png" type="image/png">
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/app.v5.css">
+  <script src="/assets/app.v5.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Primary">
+      <a class="brand" href="/" aria-label="plugged.host home">
+        <img src="/assets/plugged.host-96-v3.png" alt="" width="32" height="32">
+        <span>plugged<em>.</em>host</span>
+      </a>
+      <div class="nav-links">
+        <a href="/#neo">neo</a>
+        <a href="/#run">What you can run</a>
+        <a href="/#allocation">Allocation</a>
+        <a href="/#plus">Plus</a>
+        <a href="/guides/">Guides</a>
+        <a href="/#faq">FAQ</a>
+        <a href="https://status.plugged.host">Status</a>
+      </div>
+      <div class="nav-actions">
+        <button class="icon-button" type="button" data-theme-toggle aria-label="Switch theme" title="Switch theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.2A8.5 8.5 0 0 1 8.8 4 8.5 8.5 0 1 0 20 15.2Z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+        </button>
+        <a class="button small" href="https://panel.plugged.host">Open panel</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="page">
+    <div class="shell">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/guides/">Guides</a><span aria-hidden="true">/</span><span>Minecraft</span></nav>
+      <header class="page-head">
+        <h1>Run a Minecraft Bedrock server</h1>
+        <p class="lead">The Bedrock dedicated server is Mojang's own server for Minecraft: Bedrock Edition, the version on phones, tablets, Windows and consoles.</p>
+        <p class="page-meta">Updated 12 October 2026</p>
+      </header>
+      <article class="prose">
+        <h2>Bedrock server or Java with Geyser?</h2>
+        <p>A Bedrock server plays exactly like Bedrock Edition: Bedrock redstone, add-ons and marketplace-style behaviour packs. Java players can't join it. If your group mixes both editions, run a Java server with <a href="/guides/bedrock-players-on-java">Bedrock support</a> instead.</p>
+
+        <h2>1. Create the server</h2>
+        <ol>
+          <li>In the panel, choose <strong>Create server</strong> and pick <strong>Vanilla Bedrock</strong> under Game.</li>
+          <li>Pick a location close to your players and a plan. <strong>Starter</strong> runs a small world for a few friends; give it more memory for more players or a large world.</li>
+          <li>Choose <strong>Deploy server</strong>. The panel downloads the latest Bedrock server.</li>
+        </ol>
+
+        <h2>2. Set it up</h2>
+        <p>On the server's Startup page you can change:</p>
+        <ul>
+          <li><strong>Server Name</strong>: the name players see in their server list.</li>
+          <li><strong>Gamemode</strong> and <strong>Difficulty</strong>.</li>
+          <li><strong>Allow cheats</strong>, for commands such as <code>/give</code> and <code>/time</code>.</li>
+          <li><strong>Choose World</strong>: the world folder the server loads.</li>
+          <li><strong>Bedrock Version</strong>: <code>latest</code> keeps up with the game. Bedrock clients update themselves, and a server on an older version turns them away.</li>
+        </ul>
+        <p>Restart the server after a change. Everything else is in <code>server.properties</code> in the Files.</p>
+
+        <h2>3. Invite players</h2>
+        <ol>
+          <li>Copy the <strong>Address</strong> from the server's console. It is a host name and a port, for example <code>de1.plugged.host:30125</code>.</li>
+          <li>In Minecraft, players open <strong>Play</strong> › <strong>Servers</strong> › <strong>Add Server</strong>, type the host name as the address and the number after the colon as the port.</li>
+        </ol>
+        <p class="note">On Xbox, PlayStation and Nintendo Switch, the game has no Add Server button. Players there usually join through a phone or PC friend, or with a helper app such as BedrockTogether.</p>
+
+        <h2>Allowlist and operators</h2>
+        <p>To keep the server private, set <code>allow-list=true</code> in <code>server.properties</code>, restart, and add players from the console with <code>allowlist add PlayerName</code>. Make someone an operator with <code>op PlayerName</code>. Commands in the console go without the slash.</p>
+
+        <h2>Bring your own world</h2>
+        <p>Stop the server, then upload your world folder into the <code>worlds</code> folder with the file manager or <a href="/guides/sftp">SFTP</a>. On Windows, singleplayer Bedrock worlds are in the game's <code>minecraftWorlds</code> folder. Set <strong>Choose World</strong> to the folder name and start the server. Take a <a href="/guides/backups-and-schedules">backup</a> before you replace a world you have played on.</p>
+      </article>
+      <section class="related" aria-labelledby="related-title">
+        <h2 id="related-title">Related guides</h2>
+        <div class="link-list">
+          <a href="/guides/minecraft-java-server"><strong>Create a free Minecraft Java server</strong><span>From an empty account to friends on your server: create it, run the setup wizard and share the address.</span></a>
+          <a href="/guides/minecraft-plugins-and-mods"><strong>Install plugins, mods and modpacks</strong><span>Browse Modrinth, CurseForge and SpigotMC from the panel, install in one click, and update or remove what's already there.</span></a>
+          <a href="/guides/bedrock-players-on-java"><strong>Let Bedrock players join your Java server</strong><span>One click adds Geyser and Floodgate, so players on phones, consoles and Windows join your Java server.</span></a>
+          <a href="/guides/minecraft-worlds"><strong>Upload, download or create a Minecraft world</strong><span>Bring a singleplayer world to your server, download it, switch worlds, or start fresh with your own seed.</span></a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <span>© <span data-year>2026</span> plugged.host · run by noprofit.space<span data-release hidden></span></span>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="/guides/">Guides</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="https://noprofit.space/terms">Terms</a>
+        <a href="https://noprofit.space/privacy">Privacy</a>
+        <a href="https://status.plugged.host">Status</a>
+        <a href="https://discord.gg/plugged-host-1502647500295635085">Discord</a>
+        <a href="https://panel.plugged.host">Panel</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

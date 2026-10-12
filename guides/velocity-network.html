@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How to connect several Minecraft servers behind one Velocity proxy on plugged.host, with modern forwarding, so players move between a lobby and game servers without reconnecting.">
+  <meta name="theme-color" content="#0b0d10">
+  <meta name="google-adsense-account" content="ca-pub-6451683229074986">
+  <link rel="canonical" href="https://plugged.host/guides/velocity-network">
+
+  <meta property="og:title" content="Build a Minecraft network with Velocity · plugged.host">
+  <meta property="og:description" content="How to connect several Minecraft servers behind one Velocity proxy on plugged.host, with modern forwarding, so players move between a lobby and game servers without reconnecting.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://plugged.host/guides/velocity-network">
+  <meta property="og:image" content="https://plugged.host/assets/plugged.host-v3.png">
+  <title>Build a Minecraft network with Velocity · plugged.host</title>
+  <link rel="icon" href="/assets/plugged.host-96-v3.png" type="image/png">
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/app.v5.css">
+  <script src="/assets/app.v5.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Primary">
+      <a class="brand" href="/" aria-label="plugged.host home">
+        <img src="/assets/plugged.host-96-v3.png" alt="" width="32" height="32">
+        <span>plugged<em>.</em>host</span>
+      </a>
+      <div class="nav-links">
+        <a href="/#neo">neo</a>
+        <a href="/#run">What you can run</a>
+        <a href="/#allocation">Allocation</a>
+        <a href="/#plus">Plus</a>
+        <a href="/guides/">Guides</a>
+        <a href="/#faq">FAQ</a>
+        <a href="https://status.plugged.host">Status</a>
+      </div>
+      <div class="nav-actions">
+        <button class="icon-button" type="button" data-theme-toggle aria-label="Switch theme" title="Switch theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.2A8.5 8.5 0 0 1 8.8 4 8.5 8.5 0 1 0 20 15.2Z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+        </button>
+        <a class="button small" href="https://panel.plugged.host">Open panel</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="page">
+    <div class="shell">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/guides/">Guides</a><span aria-hidden="true">/</span><span>Minecraft</span></nav>
+      <header class="page-head">
+        <h1>Build a Minecraft network with Velocity</h1>
+        <p class="lead">Velocity sits in front of several Minecraft servers, so players join one address and move between a lobby, survival and minigames without reconnecting.</p>
+        <p class="page-meta">Updated 12 October 2026</p>
+      </header>
+      <article class="prose">
+        <h2>What you need</h2>
+        <ul>
+          <li>One <strong>Velocity</strong> server: the proxy players connect to. It needs little memory; <strong>Starter</strong> is plenty for a small network.</li>
+          <li>Two or more <strong>Minecraft: Java Edition</strong> servers behind it, set up with the <strong>Vanilla / Paper / Spigot / Purpur</strong> software. These are your lobby and game servers.</li>
+        </ul>
+        <p>All of them share your account's resource pool. Create them in the same location: every hop between the proxy and a game server adds delay.</p>
+
+        <h2>1. Create the servers</h2>
+        <ol>
+          <li>Create a server with <strong>Velocity</strong> as the game. Its install generates a <code>forwarding.secret</code> file, which the game servers use to trust it.</li>
+          <li>Create the game servers and run their setup wizard. Note each one's <strong>Address</strong> from its console, for example <code>de1.plugged.host:30123</code>.</li>
+        </ol>
+
+        <h2>2. Point Velocity at your servers</h2>
+        <p>In the Velocity server's Files, open <code>velocity.toml</code> and set:</p>
+        <pre><code>player-info-forwarding-mode = "modern"
+
+[servers]
+lobby = "de1.plugged.host:30123"
+survival = "de1.plugged.host:30124"
+try = ["lobby"]
+
+[forced-hosts]</code></pre>
+        <p>Use your own addresses, and clear the example entries under <code>[forced-hosts]</code> that refer to servers you don't have. <code>try</code> lists where players land when they join.</p>
+
+        <h2>3. Make the game servers trust the proxy</h2>
+        <p>On every game server:</p>
+        <ol>
+          <li>In <code>server.properties</code>, set <code>online-mode=false</code>. The proxy checks players' accounts instead.</li>
+          <li>In <code>config/paper-global.yml</code>, under <code>proxies</code> › <code>velocity</code>, set <code>enabled: true</code>, <code>online-mode: true</code> and <code>secret:</code> to the contents of Velocity's <code>forwarding.secret</code>.</li>
+          <li>Restart the server.</li>
+        </ol>
+        <p>With modern forwarding on, a game server turns away anyone who tries to join it directly instead of through the proxy, so <code>online-mode=false</code> doesn't open a back door.</p>
+
+        <h2>4. Join</h2>
+        <p>Start Velocity and the game servers, then give players the Velocity server's address. They land in the lobby; <code>/server survival</code> moves them, and plugins on the proxy or a lobby menu can do the same.</p>
+
+        <h2>When it doesn't work</h2>
+        <dl>
+          <dt>"Unable to connect you to lobby"</dt>
+          <dd>Check the address and port in <code>velocity.toml</code> and that the game server is running.</dd>
+          <dt>"This server requires you to connect with Velocity" when using the proxy</dt>
+          <dd>The secrets don't match, or <code>player-info-forwarding-mode</code> isn't <code>modern</code>. Copy <code>forwarding.secret</code> again, with no extra spaces.</dd>
+          <dt>Skins missing or players get new UUIDs</dt>
+          <dd>Forwarding is off on that game server. Recheck <code>paper-global.yml</code>.</dd>
+        </dl>
+      </article>
+      <section class="related" aria-labelledby="related-title">
+        <h2 id="related-title">Related guides</h2>
+        <div class="link-list">
+          <a href="/guides/minecraft-java-server"><strong>Create a free Minecraft Java server</strong><span>From an empty account to friends on your server: create it, run the setup wizard and share the address.</span></a>
+          <a href="/guides/minecraft-plugins-and-mods"><strong>Install plugins, mods and modpacks</strong><span>Browse Modrinth, CurseForge and SpigotMC from the panel, install in one click, and update or remove what's already there.</span></a>
+          <a href="/guides/bedrock-players-on-java"><strong>Let Bedrock players join your Java server</strong><span>One click adds Geyser and Floodgate, so players on phones, consoles and Windows join your Java server.</span></a>
+          <a href="/guides/minecraft-worlds"><strong>Upload, download or create a Minecraft world</strong><span>Bring a singleplayer world to your server, download it, switch worlds, or start fresh with your own seed.</span></a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <span>© <span data-year>2026</span> plugged.host · run by noprofit.space<span data-release hidden></span></span>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="/guides/">Guides</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="https://noprofit.space/terms">Terms</a>
+        <a href="https://noprofit.space/privacy">Privacy</a>
+        <a href="https://status.plugged.host">Status</a>
+        <a href="https://discord.gg/plugged-host-1502647500295635085">Discord</a>
+        <a href="https://panel.plugged.host">Panel</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

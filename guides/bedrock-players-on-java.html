@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Add Geyser and Floodgate to a Minecraft Java server on plugged.host in one click, so players on phones, consoles and Windows can join with Bedrock Edition.">
+  <meta name="theme-color" content="#0b0d10">
+  <meta name="google-adsense-account" content="ca-pub-6451683229074986">
+  <link rel="canonical" href="https://plugged.host/guides/bedrock-players-on-java">
+
+  <meta property="og:title" content="Let Bedrock players join your Java server · plugged.host">
+  <meta property="og:description" content="Add Geyser and Floodgate to a Minecraft Java server on plugged.host in one click, so players on phones, consoles and Windows can join with Bedrock Edition.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://plugged.host/guides/bedrock-players-on-java">
+  <meta property="og:image" content="https://plugged.host/assets/plugged.host-v3.png">
+  <title>Let Bedrock players join your Java server · plugged.host</title>
+  <link rel="icon" href="/assets/plugged.host-96-v3.png" type="image/png">
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/app.v5.css">
+  <script src="/assets/app.v5.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Primary">
+      <a class="brand" href="/" aria-label="plugged.host home">
+        <img src="/assets/plugged.host-96-v3.png" alt="" width="32" height="32">
+        <span>plugged<em>.</em>host</span>
+      </a>
+      <div class="nav-links">
+        <a href="/#neo">neo</a>
+        <a href="/#run">What you can run</a>
+        <a href="/#allocation">Allocation</a>
+        <a href="/#plus">Plus</a>
+        <a href="/guides/">Guides</a>
+        <a href="/#faq">FAQ</a>
+        <a href="https://status.plugged.host">Status</a>
+      </div>
+      <div class="nav-actions">
+        <button class="icon-button" type="button" data-theme-toggle aria-label="Switch theme" title="Switch theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.2A8.5 8.5 0 0 1 8.8 4 8.5 8.5 0 1 0 20 15.2Z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+        </button>
+        <a class="button small" href="https://panel.plugged.host">Open panel</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="page">
+    <div class="shell">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/guides/">Guides</a><span aria-hidden="true">/</span><span>Minecraft</span></nav>
+      <header class="page-head">
+        <h1>Let Bedrock players join your Java server</h1>
+        <p class="lead">Geyser translates between Bedrock Edition and Java Edition, so players on phones, tablets, consoles and Windows can play on your Java server with everyone else.</p>
+        <p class="page-meta">Updated 12 October 2026</p>
+      </header>
+      <article class="prose">
+        <h2>How it works</h2>
+        <p><strong>Geyser</strong> runs inside your server and listens on a second port for Bedrock players. <strong>Floodgate</strong> lets those players join with their Microsoft account, without owning Java Edition. plugged.host installs both for you, gives Geyser its own port and writes it into Geyser's configuration.</p>
+        <p>It works on servers running the <strong>Vanilla / Paper / Spigot / Purpur</strong> software or <strong>Fabric</strong>. Forge is not supported.</p>
+
+        <h2>Turn it on</h2>
+        <p>When you create a server, the setup wizard asks about <strong>Bedrock support</strong>: choose <strong>Yes, add Bedrock support</strong>.</p>
+        <p>On an existing server:</p>
+        <ol>
+          <li>Open <strong>Plugins</strong> (or <strong>Mods &amp; Modpacks</strong>) in the server's menu.</li>
+          <li>Choose <strong>Add Bedrock support</strong> at the top and confirm.</li>
+          <li>The panel downloads Geyser and Floodgate, reserves a port for Bedrock players and restarts the server. Bedrock players can connect once it is back up.</li>
+        </ol>
+        <p>The same button reads <strong>Update Geyser</strong> once it is installed. Update it when a new Minecraft version comes out: Bedrock clients update themselves, and an old Geyser turns them away.</p>
+
+        <h2>How Bedrock players join</h2>
+        <ol>
+          <li>Open the server's <strong>Network</strong> page and find the port marked <strong>Geyser (Bedrock)</strong>.</li>
+          <li>In Minecraft (Bedrock Edition), players open <strong>Play</strong> › <strong>Servers</strong> › <strong>Add Server</strong>.</li>
+          <li>For the server address, they type the host name from the server's Address, such as <code>de1.plugged.host</code>, without the Java port. For the port, they type the Geyser port.</li>
+        </ol>
+        <p>If you gave the server its own <a href="/guides/minecraft-subdomain">onplugged.host name</a>, Bedrock players can use that name as the address, with the Geyser port.</p>
+        <p class="note">On Xbox, PlayStation and Nintendo Switch, the game only shows the featured servers and has no Add Server button. Players there usually join through a phone or PC friend's world, or with a third-party helper app such as BedrockTogether.</p>
+
+        <h2>Things to know</h2>
+        <ul>
+          <li>Bedrock players get a <code>.</code> in front of their name (for example <code>.Steve</code>), so they never clash with a Java player of the same name. Use that name for the whitelist and for operator commands.</li>
+          <li>Some Java-only features look different or are missing on Bedrock: custom items, some resource packs, and mods that add new blocks. A plain or plugin server works best.</li>
+          <li>Plugins that check the player's client version, and some anti-cheats, need a Geyser-compatible setting. Check their documentation if Bedrock players are kicked.</li>
+        </ul>
+      </article>
+      <section class="related" aria-labelledby="related-title">
+        <h2 id="related-title">Related guides</h2>
+        <div class="link-list">
+          <a href="/guides/minecraft-java-server"><strong>Create a free Minecraft Java server</strong><span>From an empty account to friends on your server: create it, run the setup wizard and share the address.</span></a>
+          <a href="/guides/minecraft-plugins-and-mods"><strong>Install plugins, mods and modpacks</strong><span>Browse Modrinth, CurseForge and SpigotMC from the panel, install in one click, and update or remove what's already there.</span></a>
+          <a href="/guides/minecraft-worlds"><strong>Upload, download or create a Minecraft world</strong><span>Bring a singleplayer world to your server, download it, switch worlds, or start fresh with your own seed.</span></a>
+          <a href="/guides/minecraft-subdomain"><strong>Give your server its own address</strong><span>Swap host-and-port addresses for a name like play.onplugged.host that players can remember.</span></a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <span>© <span data-year>2026</span> plugged.host · run by noprofit.space<span data-release hidden></span></span>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="/guides/">Guides</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="https://noprofit.space/terms">Terms</a>
+        <a href="https://noprofit.space/privacy">Privacy</a>
+        <a href="https://status.plugged.host">Status</a>
+        <a href="https://discord.gg/plugged-host-1502647500295635085">Discord</a>
+        <a href="https://panel.plugged.host">Panel</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

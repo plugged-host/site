@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Step by step: create a free Minecraft: Java Edition server on plugged.host, choose Paper/Purpur, Fabric, Forge or NeoForge in the setup wizard, and invite your friends.">
+  <meta name="theme-color" content="#0b0d10">
+  <meta name="google-adsense-account" content="ca-pub-6451683229074986">
+  <link rel="canonical" href="https://plugged.host/guides/minecraft-java-server">
+
+  <meta property="og:title" content="Create a free Minecraft Java server · plugged.host">
+  <meta property="og:description" content="Step by step: create a free Minecraft: Java Edition server on plugged.host, choose Paper/Purpur, Fabric, Forge or NeoForge in the setup wizard, and invite your friends.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://plugged.host/guides/minecraft-java-server">
+  <meta property="og:image" content="https://plugged.host/assets/plugged.host-v3.png">
+  <title>Create a free Minecraft Java server · plugged.host</title>
+  <link rel="icon" href="/assets/plugged.host-96-v3.png" type="image/png">
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/app.v5.css">
+  <script src="/assets/app.v5.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Primary">
+      <a class="brand" href="/" aria-label="plugged.host home">
+        <img src="/assets/plugged.host-96-v3.png" alt="" width="32" height="32">
+        <span>plugged<em>.</em>host</span>
+      </a>
+      <div class="nav-links">
+        <a href="/#neo">neo</a>
+        <a href="/#run">What you can run</a>
+        <a href="/#allocation">Allocation</a>
+        <a href="/#plus">Plus</a>
+        <a href="/guides/">Guides</a>
+        <a href="/#faq">FAQ</a>
+        <a href="https://status.plugged.host">Status</a>
+      </div>
+      <div class="nav-actions">
+        <button class="icon-button" type="button" data-theme-toggle aria-label="Switch theme" title="Switch theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.2A8.5 8.5 0 0 1 8.8 4 8.5 8.5 0 1 0 20 15.2Z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+        </button>
+        <a class="button small" href="https://panel.plugged.host">Open panel</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="page">
+    <div class="shell">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/guides/">Guides</a><span aria-hidden="true">/</span><span>Minecraft</span></nav>
+      <header class="page-head">
+        <h1>Create a free Minecraft Java server</h1>
+        <p class="lead">Create a Minecraft: Java Edition server, pick its software and version in the setup wizard, and share the address with your friends. It takes a few minutes.</p>
+        <p class="page-meta">Updated 12 October 2026</p>
+      </header>
+      <article class="prose">
+        <h2>1. Create the server</h2>
+        <ol>
+          <li>Sign in at <a href="https://panel.plugged.host">panel.plugged.host</a> with your noprofit.space account (the first sign-in creates it) and choose <strong>Create server</strong>.</li>
+          <li>Under <strong>Details</strong>, type a server name, or press the dice button for a random one.</li>
+          <li>Under <strong>Game</strong>, pick <strong>Minecraft: Java Edition</strong>.</li>
+          <li>Under <strong>Location</strong>, pick the country closest to your players. Free locations are open to everyone; Plus and Premium locations need plugged.host Plus or PlusPlus. A location marked <strong>Full</strong> has no room right now.</li>
+          <li>Under <strong>Resources</strong>, pick a plan. See below for how much a server needs.</li>
+          <li>Leave the box that accepts the <a href="https://aka.ms/MinecraftEULA">Minecraft EULA</a> ticked (a server can't run without it) and choose <strong>Deploy server</strong>.</li>
+        </ol>
+        <p>The panel opens the server's console and shows <strong>Setting up your server</strong> while it installs. That takes a minute or two.</p>
+
+        <h3>How much memory does it need?</h3>
+        <p>Every account has one pool of CPU, memory and disk to share between its servers, so a smaller server leaves room for others. As a rough guide:</p>
+        <ul>
+          <li><strong>Starter</strong> (2 GB of memory): a few friends on a plain or lightly modded server.</li>
+          <li><strong>Standard</strong> or <strong>Pro</strong> (4 to 8 GB): a group of 10 to 20 players, plugins, or a small modpack.</li>
+          <li><strong>Ultimate</strong> and up (12 GB or more): large modpacks or a busy public server.</li>
+        </ul>
+        <p>You can resize the server later, so start small and grow it if it struggles. The <a href="/guides/resources-and-credits">resources guide</a> explains the pool.</p>
+
+        <h2>2. Run the setup wizard</h2>
+        <p>When the install is done, the panel asks you to <strong>Set up your server</strong> before anything else:</p>
+        <dl>
+          <dt>Server software</dt>
+          <dd><strong>Vanilla / Paper / Spigot / Purpur</strong> runs plugins and plays like vanilla Minecraft; it installs Purpur, a fast fork of Paper that runs Paper, Spigot and Bukkit plugins. <strong>Fabric</strong>, <strong>NeoForge</strong> and <strong>Forge</strong> run mods. Pick a mod loader only if you want mods: players then need the same mods installed too.</dd>
+          <dt>Minecraft version</dt>
+          <dd><strong>Latest (recommended)</strong>, or an older version if your players or your mods need one.</dd>
+          <dt>Modpack</dt>
+          <dd>For a mod loader, you can search Modrinth and install a whole modpack, or keep <strong>No modpack - just the plain server</strong>.</dd>
+          <dt>Bedrock support</dt>
+          <dd>Choose <strong>Yes, add Bedrock support</strong> to let players on phones, consoles and Windows join too. The <a href="/guides/bedrock-players-on-java">crossplay guide</a> explains how it works.</dd>
+          <dt>Player accounts</dt>
+          <dd><strong>Premium accounts only</strong> checks every player with Mojang, so nobody can join under someone else's name. Keep it unless you know you need the other option.</dd>
+          <dt>Who is it for</dt>
+          <dd><strong>Private - friends only</strong> turns on the whitelist, so only the players you list can join. <strong>Public - anyone can join</strong> leaves it open.</dd>
+          <dt>Players</dt>
+          <dd>Type the Minecraft names of your <strong>Allowed players</strong> and of your <strong>Operators</strong>, the players who can use admin commands.</dd>
+        </dl>
+        <p>Choose <strong>Finish setup</strong>. The server starts with your settings.</p>
+
+        <h2>3. Invite your friends</h2>
+        <p>The <strong>Address</strong> on the server's console, for example <code>de1.plugged.host:30123</code>, is what players type to join. Click it to copy it. In Minecraft, they open <strong>Multiplayer</strong>, choose <strong>Add Server</strong> and paste it, port included.</p>
+        <p>Want something easier to remember? You can give the server a name like <code>play-yourname.onplugged.host</code>, with no port to type: see <a href="/guides/minecraft-subdomain">Give your server its own address</a>.</p>
+
+        <h2>4. Look after it</h2>
+        <ul>
+          <li><strong>The console</strong> shows the server's output live and takes commands, without the slash: <code>op Steve</code>, <code>whitelist add Alex</code>, <code>say Restarting in 5 minutes</code>.</li>
+          <li><strong>The log check</strong> on the console page reads the server log for you. When it finds a problem, it says what is wrong and offers <strong>Ask neo to fix it</strong>.</li>
+          <li><strong>Backups</strong> protect your world from mistakes and griefing. Take one before you add mods or update; the <a href="/guides/backups-and-schedules">backups guide</a> shows how to automate them.</li>
+          <li><strong>Plugins and mods</strong> install from the panel; see <a href="/guides/minecraft-plugins-and-mods">Install plugins, mods and modpacks</a>.</li>
+        </ul>
+        <p class="note">Free servers show a short message in the game chat about once an hour, "This server is powered by plugged.host". plugged.host Plus turns it off.</p>
+      </article>
+      <section class="related" aria-labelledby="related-title">
+        <h2 id="related-title">Related guides</h2>
+        <div class="link-list">
+          <a href="/guides/minecraft-plugins-and-mods"><strong>Install plugins, mods and modpacks</strong><span>Browse Modrinth, CurseForge and SpigotMC from the panel, install in one click, and update or remove what's already there.</span></a>
+          <a href="/guides/bedrock-players-on-java"><strong>Let Bedrock players join your Java server</strong><span>One click adds Geyser and Floodgate, so players on phones, consoles and Windows join your Java server.</span></a>
+          <a href="/guides/minecraft-worlds"><strong>Upload, download or create a Minecraft world</strong><span>Bring a singleplayer world to your server, download it, switch worlds, or start fresh with your own seed.</span></a>
+          <a href="/guides/minecraft-subdomain"><strong>Give your server its own address</strong><span>Swap host-and-port addresses for a name like play.onplugged.host that players can remember.</span></a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <span>© <span data-year>2026</span> plugged.host · run by noprofit.space<span data-release hidden></span></span>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="/guides/">Guides</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="https://noprofit.space/terms">Terms</a>
+        <a href="https://noprofit.space/privacy">Privacy</a>
+        <a href="https://status.plugged.host">Status</a>
+        <a href="https://discord.gg/plugged-host-1502647500295635085">Discord</a>
+        <a href="https://panel.plugged.host">Panel</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

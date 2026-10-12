@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How to find your plugged.host SFTP host, port, username and password, and connect with FileZilla, WinSCP or Cyberduck to upload worlds, mods and code.">
+  <meta name="theme-color" content="#0b0d10">
+  <meta name="google-adsense-account" content="ca-pub-6451683229074986">
+  <link rel="canonical" href="https://plugged.host/guides/sftp">
+
+  <meta property="og:title" content="Connect to your server over SFTP · plugged.host">
+  <meta property="og:description" content="How to find your plugged.host SFTP host, port, username and password, and connect with FileZilla, WinSCP or Cyberduck to upload worlds, mods and code.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://plugged.host/guides/sftp">
+  <meta property="og:image" content="https://plugged.host/assets/plugged.host-v3.png">
+  <title>Connect to your server over SFTP · plugged.host</title>
+  <link rel="icon" href="/assets/plugged.host-96-v3.png" type="image/png">
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/app.v5.css">
+  <script src="/assets/app.v5.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Primary">
+      <a class="brand" href="/" aria-label="plugged.host home">
+        <img src="/assets/plugged.host-96-v3.png" alt="" width="32" height="32">
+        <span>plugged<em>.</em>host</span>
+      </a>
+      <div class="nav-links">
+        <a href="/#neo">neo</a>
+        <a href="/#run">What you can run</a>
+        <a href="/#allocation">Allocation</a>
+        <a href="/#plus">Plus</a>
+        <a href="/guides/">Guides</a>
+        <a href="/#faq">FAQ</a>
+        <a href="https://status.plugged.host">Status</a>
+      </div>
+      <div class="nav-actions">
+        <button class="icon-button" type="button" data-theme-toggle aria-label="Switch theme" title="Switch theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.2A8.5 8.5 0 0 1 8.8 4 8.5 8.5 0 1 0 20 15.2Z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+        </button>
+        <a class="button small" href="https://panel.plugged.host">Open panel</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="page">
+    <div class="shell">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/guides/">Guides</a><span aria-hidden="true">/</span><span>Using the panel</span></nav>
+      <header class="page-head">
+        <h1>Connect to your server over SFTP</h1>
+        <p class="lead">The file manager in the panel is fine for a few files. For a large world, a modpack or a whole project, connect with an SFTP client instead.</p>
+        <p class="page-meta">Updated 12 October 2026</p>
+      </header>
+      <article class="prose">
+        <h2>Find your connection details</h2>
+        <p>Open your server's <strong>Settings</strong> and find <strong>SFTP Information</strong>:</p>
+        <dl>
+          <dt>Connection</dt>
+          <dd>The host name and port, for example <code>de1.plugged.host:2022</code>. <strong>Copy Host</strong> copies it. Note that the port is not 22.</dd>
+          <dt>Username</dt>
+          <dd>Your panel username, a dot and the server's short ID, for example <code>steve.1a2b3c4d</code>. Each server has its own, so you always land in the right one. <strong>Copy Username</strong> copies it.</dd>
+          <dt>Password</dt>
+          <dd>Your noprofit.space account password, the one you sign in to the panel with. There is no separate SFTP password. If you only ever sign in with Discord or a passkey, add a password to your account at <a href="https://accounts.noprofit.space">accounts.noprofit.space</a> first.</dd>
+        </dl>
+        <p><strong>Launch in SFTP Client</strong> opens the connection in the SFTP program installed on your computer, if your system knows one.</p>
+
+        <h2>Connect with FileZilla</h2>
+        <ol>
+          <li>Install <a href="https://filezilla-project.org">FileZilla</a> (the client, not the server).</li>
+          <li>Open <strong>File</strong> › <strong>Site Manager</strong> › <strong>New site</strong>.</li>
+          <li>Set <strong>Protocol</strong> to <strong>SFTP - SSH File Transfer Protocol</strong>.</li>
+          <li>Fill in <strong>Host</strong> (without the port), <strong>Port</strong> <code>2022</code> or the one shown, <strong>Logon Type</strong> <strong>Normal</strong>, then your <strong>User</strong> and <strong>Password</strong>.</li>
+          <li>Choose <strong>Connect</strong>. The first time, FileZilla asks you to trust the server's key; accept it.</li>
+        </ol>
+        <p>Your server's files appear on the right. Drag files between your computer on the left and the server.</p>
+
+        <h2>Other clients</h2>
+        <ul>
+          <li><strong>WinSCP</strong> (Windows): choose SFTP as the file protocol and fill in the same four fields.</li>
+          <li><strong>Cyberduck</strong> (macOS and Windows): <strong>Open Connection</strong>, choose SFTP, and enter the host, port, username and password.</li>
+          <li><strong>Command line</strong>: <code>sftp -P 2022 steve.1a2b3c4d@de1.plugged.host</code>, with your own port, username and host.</li>
+        </ul>
+
+        <h2>Tips</h2>
+        <ul>
+          <li>Stop a Minecraft server before you replace its world or a mod, so it doesn't overwrite your upload when it saves.</li>
+          <li>Upload one archive and unpack it in the panel's file manager, rather than thousands of small files. It is much faster.</li>
+          <li>Everything you upload counts towards the server's disk space.</li>
+          <li>Subusers connect with their own username and password, and only if you gave them the SFTP permission. See <a href="/guides/share-a-server">Share a server with friends</a>.</li>
+        </ul>
+
+        <h2>When it doesn't connect</h2>
+        <dl>
+          <dt>Authentication failed</dt>
+          <dd>Check that the username includes the dot and the server ID, and that the password is your current account password. Copy both from the panel to avoid typos.</dd>
+          <dt>Connection refused or timed out</dt>
+          <dd>Check the port: SFTP uses the port shown in the panel, not 22 or the game port. Make sure the protocol is SFTP, not FTP or FTPS.</dd>
+        </dl>
+      </article>
+      <section class="related" aria-labelledby="related-title">
+        <h2 id="related-title">Related guides</h2>
+        <div class="link-list">
+          <a href="/guides/backups-and-schedules"><strong>Back up, restore and schedule</strong><span>Create, lock, download and restore backups, and let schedules back up and restart your server for you.</span></a>
+          <a href="/guides/databases"><strong>Create a database for your server</strong><span>A MariaDB database for plugins, FiveM frameworks and bots, with its credentials one click away.</span></a>
+          <a href="/guides/move-a-server"><strong>Move your server to another location</strong><span>Move a server closer to your players yourself. Files, worlds and backups come along.</span></a>
+          <a href="/guides/neo"><strong>Get things done with neo</strong><span>Ask the assistant in the panel to install, fix and configure your servers, and decide what it may do without asking.</span></a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <span>© <span data-year>2026</span> plugged.host · run by noprofit.space<span data-release hidden></span></span>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="/guides/">Guides</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="https://noprofit.space/terms">Terms</a>
+        <a href="https://noprofit.space/privacy">Privacy</a>
+        <a href="https://status.plugged.host">Status</a>
+        <a href="https://discord.gg/plugged-host-1502647500295635085">Discord</a>
+        <a href="https://panel.plugged.host">Panel</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

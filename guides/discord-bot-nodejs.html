@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How to run a discord.js bot on plugged.host for free: create a Node.js server, upload your code or clone it from GitHub, keep the token in a .env file and start it.">
+  <meta name="theme-color" content="#0b0d10">
+  <meta name="google-adsense-account" content="ca-pub-6451683229074986">
+  <link rel="canonical" href="https://plugged.host/guides/discord-bot-nodejs">
+
+  <meta property="og:title" content="Host a Discord bot with Node.js · plugged.host">
+  <meta property="og:description" content="How to run a discord.js bot on plugged.host for free: create a Node.js server, upload your code or clone it from GitHub, keep the token in a .env file and start it.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://plugged.host/guides/discord-bot-nodejs">
+  <meta property="og:image" content="https://plugged.host/assets/plugged.host-v3.png">
+  <title>Host a Discord bot with Node.js · plugged.host</title>
+  <link rel="icon" href="/assets/plugged.host-96-v3.png" type="image/png">
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/app.v5.css">
+  <script src="/assets/app.v5.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Primary">
+      <a class="brand" href="/" aria-label="plugged.host home">
+        <img src="/assets/plugged.host-96-v3.png" alt="" width="32" height="32">
+        <span>plugged<em>.</em>host</span>
+      </a>
+      <div class="nav-links">
+        <a href="/#neo">neo</a>
+        <a href="/#run">What you can run</a>
+        <a href="/#allocation">Allocation</a>
+        <a href="/#plus">Plus</a>
+        <a href="/guides/">Guides</a>
+        <a href="/#faq">FAQ</a>
+        <a href="https://status.plugged.host">Status</a>
+      </div>
+      <div class="nav-actions">
+        <button class="icon-button" type="button" data-theme-toggle aria-label="Switch theme" title="Switch theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.2A8.5 8.5 0 0 1 8.8 4 8.5 8.5 0 1 0 20 15.2Z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+        </button>
+        <a class="button small" href="https://panel.plugged.host">Open panel</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="page">
+    <div class="shell">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/guides/">Guides</a><span aria-hidden="true">/</span><span>Bots and apps</span></nav>
+      <header class="page-head">
+        <h1>Host a Discord bot with Node.js</h1>
+        <p class="lead">Run a discord.js bot, or any other Node.js program, on plugged.host so it keeps running without your own computer.</p>
+        <p class="page-meta">Updated 12 October 2026</p>
+      </header>
+      <article class="prose">
+        <h2>Before you start</h2>
+        <ul>
+          <li>A bot application in the <a href="https://discord.com/developers/applications">Discord Developer Portal</a>, and its token (your application › <strong>Bot</strong> › <strong>Reset Token</strong>). Turn on the privileged intents your code asks for on the same page, such as Message Content.</li>
+          <li>Your bot's code, with a <code>package.json</code> that lists its dependencies, for example <code>discord.js</code>.</li>
+          <li>A plugged.host account. You sign in with a noprofit.space account; the first sign-in creates it.</li>
+        </ul>
+
+        <h2>1. Create the server</h2>
+        <ol>
+          <li>Open the panel at <a href="https://panel.plugged.host">panel.plugged.host</a> and choose <strong>Create server</strong>.</li>
+          <li>Give it a name and pick <strong>node.js generic</strong> under Game.</li>
+          <li>Pick a location, then a plan. Most bots are happy on <strong>Starter</strong> (one CPU thread, 2 GB of memory, 10 GB of disk); a bot that plays music or serves many guilds may want more memory.</li>
+          <li>Choose <strong>Deploy server</strong>. The panel installs the runtime and opens the server's console.</li>
+        </ol>
+
+        <h2>2. Put your code on the server</h2>
+        <p>The simplest way is the <strong>Files</strong> page. Upload your project, or upload it as a <code>.zip</code> and unpack it on the server. Leave <code>node_modules</code> out: the server installs your dependencies itself every time it starts. For many files, <a href="/guides/sftp">connect over SFTP</a> instead.</p>
+        <p>If your bot lives in a Git repository, the server can clone it. On the server's Startup page, fill in <strong>Git Repo Address</strong> and <strong>Install Branch</strong>; for a private repository add <strong>Git Username</strong> and a <strong>Git Access Token</strong> (on GitHub, a fine-grained token with read-only access to that one repository). The repository is cloned when the server is installed, into an empty folder, so set these on a fresh server and reinstall it from <strong>Settings</strong>. Set <strong>Auto Update</strong> to <code>1</code> and the server runs <code>git pull</code> before every start, so a restart deploys your latest commit.</p>
+
+        <h2>3. Keep the token out of your code</h2>
+        <p>Anyone who has your token controls your bot, so it should not sit in your source files or in Git. Create a file named <code>.env</code> next to your code on the Files page:</p>
+        <pre><code>DISCORD_TOKEN=paste-your-token-here</code></pre>
+        <p>Add <code>dotenv</code> to the dependencies in <code>package.json</code>, then load it on the first line of your main file and read the token from the environment:</p>
+        <pre><code>require('dotenv').config();
+const { Client, GatewayIntentBits } = require('discord.js');
+
+const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+client.once('ready', () =&gt; console.log(`Logged in as ${client.user.tag}`));
+client.login(process.env.DISCORD_TOKEN);</code></pre>
+        <p>With ES modules, write <code>import 'dotenv/config';</code> instead of the first line. Recent Node.js versions can also read the file without a package: call <code>process.loadEnvFile()</code> before you use the token.</p>
+        <p>Add <code>.env</code> to your <code>.gitignore</code>. If a token ever leaks, reset it in the Developer Portal right away and paste the new one into <code>.env</code>.</p>
+
+        <h2>4. Tell the server what to run</h2>
+        <p>On the Startup page:</p>
+        <ul>
+          <li><strong>Main file</strong> is the file the server starts, <code>index.js</code> by default. Change it if your entry point is called something else, such as <code>bot.js</code> or <code>src/index.ts</code> (up to 16 characters). TypeScript files run directly, without a build step.</li>
+          <li><strong>Docker Image</strong> picks the Node.js version. Use the one your bot is developed on; discord.js needs a recent one.</li>
+          <li><strong>Additional Node packages</strong> installs extra packages, separated by spaces, on every start. You normally don't need it: list your dependencies in <code>package.json</code> instead.</li>
+        </ul>
+
+        <h2>5. Start it</h2>
+        <p>Press <strong>Start</strong>. On every start the server runs <code>npm install</code> for your <code>package.json</code>, then starts the main file. Watch the console: with the example above you will see <code>Logged in as YourBot#1234</code>, and the bot shows as online in Discord.</p>
+
+        <h2>Idle servers</h2>
+        <p>Free capacity is shared, so a server nobody has used for two days is stopped to make room. "Used" means activity in the panel: starting or stopping it, the console, files, backups, and anything your subusers or neo do there. Start it again from the panel and it carries on as before. If it stays idle for longer, it can be moved into hibernation; its Console then offers <strong>Restore server</strong>, which brings it back for a few tokens.</p>
+
+        <h2>When it doesn't start</h2>
+        <dl>
+          <dt><code>Cannot find module 'discord.js'</code></dt>
+          <dd>The package is missing from <code>package.json</code>, or your code is in a subfolder and <code>package.json</code> is not in the server's top folder. Move the files up a level or fix the dependency list.</dd>
+          <dt><code>An invalid token was provided</code></dt>
+          <dd>The token was reset, or <code>.env</code> was not loaded. Check that the file is called exactly <code>.env</code>, sits next to your main file, and that dotenv is loaded before <code>client.login</code>.</dd>
+          <dt><code>Used disallowed intents</code></dt>
+          <dd>Your code asks for a privileged intent that is switched off. Turn it on under <strong>Bot</strong> in the Developer Portal.</dd>
+          <dt>The console stops right after starting</dt>
+          <dd>Check that <strong>Main file</strong> points at a file that exists. Or open neo in the panel and ask it to find out why the bot won't start; it reads the console and the files and can fix most of these for you.</dd>
+        </dl>
+      </article>
+      <section class="related" aria-labelledby="related-title">
+        <h2 id="related-title">Related guides</h2>
+        <div class="link-list">
+          <a href="/guides/discord-bot-python"><strong>Host a Discord bot with Python</strong><span>Run a discord.py bot with its requirements.txt, a .env file for the token and the Python version you need.</span></a>
+          <a href="/guides/minecraft-java-server"><strong>Create a free Minecraft Java server</strong><span>From an empty account to friends on your server: create it, run the setup wizard and share the address.</span></a>
+          <a href="/guides/minecraft-plugins-and-mods"><strong>Install plugins, mods and modpacks</strong><span>Browse Modrinth, CurseForge and SpigotMC from the panel, install in one click, and update or remove what's already there.</span></a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <span>© <span data-year>2026</span> plugged.host · run by noprofit.space<span data-release hidden></span></span>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="/guides/">Guides</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="https://noprofit.space/terms">Terms</a>
+        <a href="https://noprofit.space/privacy">Privacy</a>
+        <a href="https://status.plugged.host">Status</a>
+        <a href="https://discord.gg/plugged-host-1502647500295635085">Discord</a>
+        <a href="https://panel.plugged.host">Panel</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

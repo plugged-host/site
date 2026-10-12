@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How to upload your own Minecraft world to a plugged.host server, download a backup of it, switch between worlds, or generate a new one with a seed, world type and data packs.">
+  <meta name="theme-color" content="#0b0d10">
+  <meta name="google-adsense-account" content="ca-pub-6451683229074986">
+  <link rel="canonical" href="https://plugged.host/guides/minecraft-worlds">
+
+  <meta property="og:title" content="Upload, download or create a Minecraft world · plugged.host">
+  <meta property="og:description" content="How to upload your own Minecraft world to a plugged.host server, download a backup of it, switch between worlds, or generate a new one with a seed, world type and data packs.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://plugged.host/guides/minecraft-worlds">
+  <meta property="og:image" content="https://plugged.host/assets/plugged.host-v3.png">
+  <title>Upload, download or create a Minecraft world · plugged.host</title>
+  <link rel="icon" href="/assets/plugged.host-96-v3.png" type="image/png">
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/app.v5.css">
+  <script src="/assets/app.v5.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Primary">
+      <a class="brand" href="/" aria-label="plugged.host home">
+        <img src="/assets/plugged.host-96-v3.png" alt="" width="32" height="32">
+        <span>plugged<em>.</em>host</span>
+      </a>
+      <div class="nav-links">
+        <a href="/#neo">neo</a>
+        <a href="/#run">What you can run</a>
+        <a href="/#allocation">Allocation</a>
+        <a href="/#plus">Plus</a>
+        <a href="/guides/">Guides</a>
+        <a href="/#faq">FAQ</a>
+        <a href="https://status.plugged.host">Status</a>
+      </div>
+      <div class="nav-actions">
+        <button class="icon-button" type="button" data-theme-toggle aria-label="Switch theme" title="Switch theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.2A8.5 8.5 0 0 1 8.8 4 8.5 8.5 0 1 0 20 15.2Z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+        </button>
+        <a class="button small" href="https://panel.plugged.host">Open panel</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="page">
+    <div class="shell">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/guides/">Guides</a><span aria-hidden="true">/</span><span>Minecraft</span></nav>
+      <header class="page-head">
+        <h1>Upload, download or create a Minecraft world</h1>
+        <p class="lead">The Worlds page handles everything about your Minecraft Java server's world: bring one from singleplayer, keep a copy, or start a new one with the seed you want.</p>
+        <p class="page-meta">Updated 12 October 2026</p>
+      </header>
+      <article class="prose">
+        <h2>The Worlds page</h2>
+        <p>Open <strong>Worlds</strong> in your Minecraft server's menu. Each world on the server has a card with its seed, world type, difficulty, game mode, whether structures are generated, and when it was last saved. The world the server loads is the one in use; the others stay on disk until you switch to them or delete them.</p>
+        <p>Uploading, replacing and generating worlds need the server to be off. The page offers <strong>Stop server</strong> when it is running.</p>
+
+        <h2>Upload a singleplayer world</h2>
+        <ol>
+          <li>On your computer, find the world folder. In the Minecraft launcher, it is in the <code>saves</code> folder of your game directory: on Windows, <code>%appdata%\.minecraft\saves</code>.</li>
+          <li>Compress that world's folder into a <code>.zip</code> (or <code>.tar.gz</code>). The folder that contains <code>level.dat</code> should be at the top of the archive.</li>
+          <li>On the Worlds page, choose <strong>Upload a world</strong>, pick the archive and choose <strong>Upload and replace</strong>.</li>
+          <li>Start the server and join it.</li>
+        </ol>
+        <p>The upload limit is 100 MB on most nodes. For a bigger world, <a href="/guides/sftp">upload the folder over SFTP</a> into the server and then choose <strong>Use this world</strong> on its card.</p>
+        <p class="note">A world from a newer Minecraft version won't open on an older server. Upgrading works the other way, but take a backup first: once a world is converted to a newer version, it can't go back.</p>
+
+        <h2>Download a world</h2>
+        <p>Choose <strong>Download</strong> on the world's card. The panel packs it into a <code>.zip</code> and gives you a link that stays valid for two hours. Unpack it into your <code>saves</code> folder to play it in singleplayer. To keep regular copies without doing anything, set up <a href="/guides/backups-and-schedules">scheduled backups</a>.</p>
+
+        <h2>Create a new world</h2>
+        <p>For a fresh start with a random seed, choose <strong>Generate</strong> on the current world. For more control, choose <strong>Options</strong>:</p>
+        <dl>
+          <dt>World name</dt>
+          <dd>The folder the new world is saved in. A new name keeps the old world on disk.</dd>
+          <dt>Seed</dt>
+          <dd>Leave it on Random, or paste a seed you found online or in singleplayer.</dd>
+          <dt>World type</dt>
+          <dd><code>normal</code>, <code>flat</code> (superflat), <code>large_biomes</code>, <code>amplified</code> (extreme mountains, heavier to run) or <code>single_biome_surface</code>. <strong>Generator settings</strong> customises flat and single-biome worlds.</dd>
+          <dt>Generate structures</dt>
+          <dd>Villages, temples, strongholds and the rest. Turn it off for a clean flat build world.</dd>
+          <dt>Data packs</dt>
+          <dd>The data packs the world starts with.</dd>
+          <dt>Keep a copy of the current world</dt>
+          <dd>Leave this on unless you are sure you don't need the old world any more.</dd>
+        </dl>
+        <p>Choose <strong>Create new world</strong>. The world is generated the next time the server starts, so the first start takes a little longer.</p>
+
+        <h2>Switch or remove worlds</h2>
+        <p><strong>Use this world</strong> makes the server load another world on its next start. <strong>Files</strong> opens the world's folder in the file manager, and <strong>Delete</strong> removes a world you no longer need, which frees disk space in your account's pool.</p>
+      </article>
+      <section class="related" aria-labelledby="related-title">
+        <h2 id="related-title">Related guides</h2>
+        <div class="link-list">
+          <a href="/guides/minecraft-java-server"><strong>Create a free Minecraft Java server</strong><span>From an empty account to friends on your server: create it, run the setup wizard and share the address.</span></a>
+          <a href="/guides/minecraft-plugins-and-mods"><strong>Install plugins, mods and modpacks</strong><span>Browse Modrinth, CurseForge and SpigotMC from the panel, install in one click, and update or remove what's already there.</span></a>
+          <a href="/guides/bedrock-players-on-java"><strong>Let Bedrock players join your Java server</strong><span>One click adds Geyser and Floodgate, so players on phones, consoles and Windows join your Java server.</span></a>
+          <a href="/guides/minecraft-subdomain"><strong>Give your server its own address</strong><span>Swap host-and-port addresses for a name like play.onplugged.host that players can remember.</span></a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <span>© <span data-year>2026</span> plugged.host · run by noprofit.space<span data-release hidden></span></span>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="/guides/">Guides</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="https://noprofit.space/terms">Terms</a>
+        <a href="https://noprofit.space/privacy">Privacy</a>
+        <a href="https://status.plugged.host">Status</a>
+        <a href="https://discord.gg/plugged-host-1502647500295635085">Discord</a>
+        <a href="https://panel.plugged.host">Panel</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

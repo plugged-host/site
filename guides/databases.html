@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How to create a MariaDB database on plugged.host for a Minecraft plugin, a FiveM framework or a bot, find its credentials and connect to it.">
+  <meta name="theme-color" content="#0b0d10">
+  <meta name="google-adsense-account" content="ca-pub-6451683229074986">
+  <link rel="canonical" href="https://plugged.host/guides/databases">
+
+  <meta property="og:title" content="Create a MySQL / MariaDB database for your server · plugged.host">
+  <meta property="og:description" content="How to create a MariaDB database on plugged.host for a Minecraft plugin, a FiveM framework or a bot, find its credentials and connect to it.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://plugged.host/guides/databases">
+  <meta property="og:image" content="https://plugged.host/assets/plugged.host-v3.png">
+  <title>Create a MySQL / MariaDB database for your server · plugged.host</title>
+  <link rel="icon" href="/assets/plugged.host-96-v3.png" type="image/png">
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/app.v5.css">
+  <script src="/assets/app.v5.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Primary">
+      <a class="brand" href="/" aria-label="plugged.host home">
+        <img src="/assets/plugged.host-96-v3.png" alt="" width="32" height="32">
+        <span>plugged<em>.</em>host</span>
+      </a>
+      <div class="nav-links">
+        <a href="/#neo">neo</a>
+        <a href="/#run">What you can run</a>
+        <a href="/#allocation">Allocation</a>
+        <a href="/#plus">Plus</a>
+        <a href="/guides/">Guides</a>
+        <a href="/#faq">FAQ</a>
+        <a href="https://status.plugged.host">Status</a>
+      </div>
+      <div class="nav-actions">
+        <button class="icon-button" type="button" data-theme-toggle aria-label="Switch theme" title="Switch theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.2A8.5 8.5 0 0 1 8.8 4 8.5 8.5 0 1 0 20 15.2Z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+        </button>
+        <a class="button small" href="https://panel.plugged.host">Open panel</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="page">
+    <div class="shell">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/guides/">Guides</a><span aria-hidden="true">/</span><span>Using the panel</span></nav>
+      <header class="page-head">
+        <h1>Create a database for your server</h1>
+        <p class="lead">Many plugins, FiveM frameworks and bots store their data in MySQL. Every plugged.host server can have up to five MariaDB databases, which speak the same protocol.</p>
+        <p class="page-meta">Updated 12 October 2026</p>
+      </header>
+      <article class="prose">
+        <h2>Create one</h2>
+        <ol>
+          <li>Open your server's menu, expand <strong>More</strong> and choose <strong>Databases</strong>.</li>
+          <li>Choose <strong>Create Database</strong>.</li>
+          <li>Pick the <strong>Database Host</strong> and type a <strong>Database Name</strong>. The panel puts a short prefix in front of it, so the full name looks like <code>s123_mydata</code>.</li>
+          <li>Leave <strong>Connections From</strong> on <code>%</code> to allow connections from anywhere with the password, or enter an address to allow only that one.</li>
+        </ol>
+
+        <h2>Find the credentials</h2>
+        <p>Open the database to see its <strong>Host</strong>, <strong>Database</strong>, <strong>Username</strong> and <strong>Password</strong>, plus a ready-made <strong>JDBC Connection String</strong> for Java plugins. The password can be rotated from the same place if it ever leaks; update your configuration afterwards.</p>
+        <p>The <strong>Host</strong> is a name and a port separated by a colon. Some tools take it in one field; others want the part before the colon as the host and the number after it as the port. The database runs on its own machine, not inside your server, so <code>localhost</code> or <code>127.0.0.1</code> won't work.</p>
+
+        <h2>Connect it</h2>
+        <h3>A Minecraft plugin</h3>
+        <p>Plugins such as LuckPerms and CoreProtect ask for the same fields in their configuration file:</p>
+        <pre><code>storage-method: mysql
+data:
+  address: host-and-port-from-the-panel
+  database: s123_mydata
+  username: u123_AbCdEf
+  password: the-password</code></pre>
+        <p>The field names differ a little from plugin to plugin; the values are always the four from the panel. Restart the server after editing.</p>
+
+        <h3>FiveM with txAdmin</h3>
+        <p>Create the database before you run a recipe in txAdmin, then give txAdmin the host, name, username and password when it asks. See the <a href="/guides/fivem-server">FiveM guide</a>.</p>
+
+        <h3>A bot</h3>
+        <p>Put the credentials in your <code>.env</code> file next to the token, never in your code:</p>
+        <pre><code>DB_HOST=host-name-from-the-panel
+DB_PORT=port-from-the-panel
+DB_NAME=s123_mydata
+DB_USER=u123_AbCdEf
+DB_PASSWORD=the-password</code></pre>
+        <p>Then use a MySQL client library, such as <code>mysql2</code> in Node.js or <code>aiomysql</code> in Python, with those values.</p>
+
+        <h2>Good to know</h2>
+        <ul>
+          <li>Backups of your server don't include its databases. Most plugins and frameworks can export their data; do that before big changes.</li>
+          <li>Deleting a database deletes its data for good.</li>
+          <li>Subusers only see the password if you give them the permission to view it.</li>
+        </ul>
+      </article>
+      <section class="related" aria-labelledby="related-title">
+        <h2 id="related-title">Related guides</h2>
+        <div class="link-list">
+          <a href="/guides/sftp"><strong>Connect to your server over SFTP</strong><span>Find your SFTP details and connect with FileZilla, WinSCP or Cyberduck to move many or large files.</span></a>
+          <a href="/guides/backups-and-schedules"><strong>Back up, restore and schedule</strong><span>Create, lock, download and restore backups, and let schedules back up and restart your server for you.</span></a>
+          <a href="/guides/move-a-server"><strong>Move your server to another location</strong><span>Move a server closer to your players yourself. Files, worlds and backups come along.</span></a>
+          <a href="/guides/neo"><strong>Get things done with neo</strong><span>Ask the assistant in the panel to install, fix and configure your servers, and decide what it may do without asking.</span></a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <span>© <span data-year>2026</span> plugged.host · run by noprofit.space<span data-release hidden></span></span>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="/guides/">Guides</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="https://noprofit.space/terms">Terms</a>
+        <a href="https://noprofit.space/privacy">Privacy</a>
+        <a href="https://status.plugged.host">Status</a>
+        <a href="https://discord.gg/plugged-host-1502647500295635085">Discord</a>
+        <a href="https://panel.plugged.host">Panel</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

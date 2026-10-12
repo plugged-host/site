@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How to create, lock, download and restore backups on plugged.host, use the off-site copy at backups.plugged.host, and schedule automatic backups and restarts.">
+  <meta name="theme-color" content="#0b0d10">
+  <meta name="google-adsense-account" content="ca-pub-6451683229074986">
+  <link rel="canonical" href="https://plugged.host/guides/backups-and-schedules">
+
+  <meta property="og:title" content="Back up and restore your server, and automate it · plugged.host">
+  <meta property="og:description" content="How to create, lock, download and restore backups on plugged.host, use the off-site copy at backups.plugged.host, and schedule automatic backups and restarts.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://plugged.host/guides/backups-and-schedules">
+  <meta property="og:image" content="https://plugged.host/assets/plugged.host-v3.png">
+  <title>Back up and restore your server, and automate it · plugged.host</title>
+  <link rel="icon" href="/assets/plugged.host-96-v3.png" type="image/png">
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/app.v5.css">
+  <script src="/assets/app.v5.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Primary">
+      <a class="brand" href="/" aria-label="plugged.host home">
+        <img src="/assets/plugged.host-96-v3.png" alt="" width="32" height="32">
+        <span>plugged<em>.</em>host</span>
+      </a>
+      <div class="nav-links">
+        <a href="/#neo">neo</a>
+        <a href="/#run">What you can run</a>
+        <a href="/#allocation">Allocation</a>
+        <a href="/#plus">Plus</a>
+        <a href="/guides/">Guides</a>
+        <a href="/#faq">FAQ</a>
+        <a href="https://status.plugged.host">Status</a>
+      </div>
+      <div class="nav-actions">
+        <button class="icon-button" type="button" data-theme-toggle aria-label="Switch theme" title="Switch theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.2A8.5 8.5 0 0 1 8.8 4 8.5 8.5 0 1 0 20 15.2Z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+        </button>
+        <a class="button small" href="https://panel.plugged.host">Open panel</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="page">
+    <div class="shell">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/guides/">Guides</a><span aria-hidden="true">/</span><span>Using the panel</span></nav>
+      <header class="page-head">
+        <h1>Back up, restore and schedule</h1>
+        <p class="lead">Backups protect your server from a bad update, a broken mod or a griefer. Schedules make them happen without you.</p>
+        <p class="page-meta">Updated 12 October 2026</p>
+      </header>
+      <article class="prose">
+        <h2>Create a backup</h2>
+        <ol>
+          <li>Open <strong>Backups</strong> in your server's menu.</li>
+          <li>Choose <strong>Create Backup</strong>.</li>
+          <li>Give it a name you will recognise later, like <code>before 1.21 update</code>.</li>
+          <li>Optionally, list files and folders to leave out under <strong>Ignored Files &amp; Directories</strong>, such as logs or a cache folder, to keep it small.</li>
+          <li>Tick <strong>Locked?</strong> if this backup must never be removed by accident or by a schedule.</li>
+        </ol>
+        <p>Each server keeps up to five backups. When it has five, delete one before you create another. You can create two backups every ten minutes.</p>
+
+        <h2>Restore a backup</h2>
+        <p>Choose <strong>Restore</strong> on the backup. The server stops, and while the restore runs you can't start it, use the file manager or create other backups. Tick <strong>Delete all files before restoring backup?</strong> to get the server exactly as it was; leave it unticked to put the backup's files back over the current ones and keep any files the backup doesn't have.</p>
+        <p>Restoring overwrites what's on the server now. If you might want the current state back, take a backup of it first.</p>
+
+        <h2>Download and the off-site copy</h2>
+        <p><strong>Download</strong> on a backup saves it to your computer as an archive. Above the list, the <strong>Off-site copy</strong> card shows the copy of your server that plugged.host keeps on separate storage, which you can download right away from <a href="https://backups.plugged.host">backups.plugged.host</a> without waiting for an archive to be built. Sign in there with your plugged.host account or with Discord to see your servers.</p>
+        <p>Backups are a convenience, not an archive. Keep your own copy of anything you can't afford to lose, as the <a href="https://noprofit.space/terms">Terms</a> also say.</p>
+
+        <h2>Lock what matters</h2>
+        <p><strong>Lock</strong> protects a backup until you <strong>Unlock</strong> it. A locked backup can't be deleted, and scheduled backups skip it when they make room. Lock the backup of a world you are proud of before trying something risky.</p>
+
+        <h2>Schedules</h2>
+        <p>A schedule runs tasks at set times. Open <strong>Schedules</strong>, create one and choose when it runs: pick <strong>Hourly</strong>, <strong>Daily</strong>, <strong>Weekly</strong> or <strong>Monthly</strong>, or fill in the minute, hour, day of month, month and day of week yourself, like a cron job. Times are in UTC.</p>
+        <p>Then add up to ten tasks, each with an optional <strong>Time Offset</strong> after the one before:</p>
+        <ul>
+          <li><strong>Send Command</strong>: a console command, such as <code>say Restarting in 5 minutes</code>.</li>
+          <li><strong>Send Power Action</strong>: start, stop, restart or kill the server.</li>
+          <li><strong>Create Backup</strong>: a new backup. When the server already has five, the oldest unlocked one is replaced.</li>
+          <li><strong>Delete Files</strong>: remove files, such as old logs.</li>
+        </ul>
+        <p><strong>Only when Server is Online?</strong> skips the schedule while the server is off, and <strong>Enable Schedule?</strong> pauses it without deleting it.</p>
+
+        <h3>Example: a nightly backup with a warning</h3>
+        <ol>
+          <li>A daily schedule at 04:00 UTC.</li>
+          <li>Task 1: <strong>Send Command</strong> <code>say Backup in 1 minute, expect a little lag</code>.</li>
+          <li>Task 2, 60 seconds later: <strong>Create Backup</strong>.</li>
+        </ol>
+        <p>With five slots and a nightly backup, you always have the last five days to go back to. Lock one now and then to keep a snapshot for longer.</p>
+      </article>
+      <section class="related" aria-labelledby="related-title">
+        <h2 id="related-title">Related guides</h2>
+        <div class="link-list">
+          <a href="/guides/sftp"><strong>Connect to your server over SFTP</strong><span>Find your SFTP details and connect with FileZilla, WinSCP or Cyberduck to move many or large files.</span></a>
+          <a href="/guides/databases"><strong>Create a database for your server</strong><span>A MariaDB database for plugins, FiveM frameworks and bots, with its credentials one click away.</span></a>
+          <a href="/guides/move-a-server"><strong>Move your server to another location</strong><span>Move a server closer to your players yourself. Files, worlds and backups come along.</span></a>
+          <a href="/guides/neo"><strong>Get things done with neo</strong><span>Ask the assistant in the panel to install, fix and configure your servers, and decide what it may do without asking.</span></a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <span>© <span data-year>2026</span> plugged.host · run by noprofit.space<span data-release hidden></span></span>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="/guides/">Guides</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="https://noprofit.space/terms">Terms</a>
+        <a href="https://noprofit.space/privacy">Privacy</a>
+        <a href="https://status.plugged.host">Status</a>
+        <a href="https://discord.gg/plugged-host-1502647500295635085">Discord</a>
+        <a href="https://panel.plugged.host">Panel</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

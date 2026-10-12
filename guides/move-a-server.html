@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How to move a plugged.host server to another country yourself: what moves with it, how long it is offline, what happens to its address, and what to do if a move fails.">
+  <meta name="theme-color" content="#0b0d10">
+  <meta name="google-adsense-account" content="ca-pub-6451683229074986">
+  <link rel="canonical" href="https://plugged.host/guides/move-a-server">
+
+  <meta property="og:title" content="Move your server to another location · plugged.host">
+  <meta property="og:description" content="How to move a plugged.host server to another country yourself: what moves with it, how long it is offline, what happens to its address, and what to do if a move fails.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://plugged.host/guides/move-a-server">
+  <meta property="og:image" content="https://plugged.host/assets/plugged.host-v3.png">
+  <title>Move your server to another location · plugged.host</title>
+  <link rel="icon" href="/assets/plugged.host-96-v3.png" type="image/png">
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/app.v5.css">
+  <script src="/assets/app.v5.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Primary">
+      <a class="brand" href="/" aria-label="plugged.host home">
+        <img src="/assets/plugged.host-96-v3.png" alt="" width="32" height="32">
+        <span>plugged<em>.</em>host</span>
+      </a>
+      <div class="nav-links">
+        <a href="/#neo">neo</a>
+        <a href="/#run">What you can run</a>
+        <a href="/#allocation">Allocation</a>
+        <a href="/#plus">Plus</a>
+        <a href="/guides/">Guides</a>
+        <a href="/#faq">FAQ</a>
+        <a href="https://status.plugged.host">Status</a>
+      </div>
+      <div class="nav-actions">
+        <button class="icon-button" type="button" data-theme-toggle aria-label="Switch theme" title="Switch theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.2A8.5 8.5 0 0 1 8.8 4 8.5 8.5 0 1 0 20 15.2Z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+        </button>
+        <a class="button small" href="https://panel.plugged.host">Open panel</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="page">
+    <div class="shell">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/guides/">Guides</a><span aria-hidden="true">/</span><span>Using the panel</span></nav>
+      <header class="page-head">
+        <h1>Move your server to another location</h1>
+        <p class="lead">Players far away, or a location that is often busy? Move the server yourself, with its files, worlds and backups, and follow the move live.</p>
+        <p class="page-meta">Updated 12 October 2026</p>
+      </header>
+      <article class="prose">
+        <h2>Before you move</h2>
+        <ul>
+          <li>Pick the location closest to most of your players; distance matters more than anything else for lag.</li>
+          <li>Free locations are open to every account. Plus locations need plugged.host Plus and Premium locations PlusPlus.</li>
+          <li>A server can't move while it is installing, restoring a backup or making one, or while it is suspended. A server can move once every six hours.</li>
+        </ul>
+
+        <h2>Move it</h2>
+        <ol>
+          <li>In your server's menu, expand <strong>More</strong> and choose <strong>Transfer</strong>.</li>
+          <li>Choose <strong>Pick a location</strong> and select where it should go. A location without room for your server's size is marked as full.</li>
+          <li>Read the summary, which says roughly how long the server will be offline, and confirm with <strong>Move to</strong> followed by the location.</li>
+        </ol>
+        <p>The server stops, its files are copied to the new location, and it starts again there. The page shows each step as it happens. Bigger servers take longer: the copy is the slow part.</p>
+
+        <h2>What changes</h2>
+        <ul>
+          <li><strong>The address.</strong> The server gets a new host name and port. Share the new <strong>Address</strong> from the console with your players.</li>
+          <li><strong>Subdomains</strong> update themselves, so if your players use a <a href="/guides/minecraft-subdomain">name like play.onplugged.host</a>, nothing changes for them.</li>
+          <li><strong>Ports</strong> in the server's settings, such as the txAdmin port of a FiveM server or Geyser's Bedrock port, follow the new numbers.</li>
+          <li>Files, worlds, backups, schedules, subusers and databases stay with the server.</li>
+        </ul>
+
+        <h2>If something goes wrong</h2>
+        <p>A failed step is retried by itself, on another node in the same location if needed. The old copy is only removed after the new one has been checked, so a move that can't finish leaves the server where it was, and it starts again there. While a move is running you can still choose <strong>Cancel move</strong>.</p>
+        <p>Who can move a server: the owner, and subusers who have the <strong>Transfer</strong> permission.</p>
+      </article>
+      <section class="related" aria-labelledby="related-title">
+        <h2 id="related-title">Related guides</h2>
+        <div class="link-list">
+          <a href="/guides/sftp"><strong>Connect to your server over SFTP</strong><span>Find your SFTP details and connect with FileZilla, WinSCP or Cyberduck to move many or large files.</span></a>
+          <a href="/guides/backups-and-schedules"><strong>Back up, restore and schedule</strong><span>Create, lock, download and restore backups, and let schedules back up and restart your server for you.</span></a>
+          <a href="/guides/databases"><strong>Create a database for your server</strong><span>A MariaDB database for plugins, FiveM frameworks and bots, with its credentials one click away.</span></a>
+          <a href="/guides/neo"><strong>Get things done with neo</strong><span>Ask the assistant in the panel to install, fix and configure your servers, and decide what it may do without asking.</span></a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <span>© <span data-year>2026</span> plugged.host · run by noprofit.space<span data-release hidden></span></span>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="/guides/">Guides</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="https://noprofit.space/terms">Terms</a>
+        <a href="https://noprofit.space/privacy">Privacy</a>
+        <a href="https://status.plugged.host">Status</a>
+        <a href="https://discord.gg/plugged-host-1502647500295635085">Discord</a>
+        <a href="https://panel.plugged.host">Panel</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

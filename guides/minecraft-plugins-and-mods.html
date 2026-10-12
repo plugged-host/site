@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How to install Minecraft plugins from Modrinth, CurseForge and SpigotMC, mods and modpacks for Fabric, Forge and NeoForge, and how to update, disable or remove them on plugged.host.">
+  <meta name="theme-color" content="#0b0d10">
+  <meta name="google-adsense-account" content="ca-pub-6451683229074986">
+  <link rel="canonical" href="https://plugged.host/guides/minecraft-plugins-and-mods">
+
+  <meta property="og:title" content="Install Minecraft plugins, mods and modpacks · plugged.host">
+  <meta property="og:description" content="How to install Minecraft plugins from Modrinth, CurseForge and SpigotMC, mods and modpacks for Fabric, Forge and NeoForge, and how to update, disable or remove them on plugged.host.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://plugged.host/guides/minecraft-plugins-and-mods">
+  <meta property="og:image" content="https://plugged.host/assets/plugged.host-v3.png">
+  <title>Install Minecraft plugins, mods and modpacks · plugged.host</title>
+  <link rel="icon" href="/assets/plugged.host-96-v3.png" type="image/png">
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/app.v5.css">
+  <script src="/assets/app.v5.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Primary">
+      <a class="brand" href="/" aria-label="plugged.host home">
+        <img src="/assets/plugged.host-96-v3.png" alt="" width="32" height="32">
+        <span>plugged<em>.</em>host</span>
+      </a>
+      <div class="nav-links">
+        <a href="/#neo">neo</a>
+        <a href="/#run">What you can run</a>
+        <a href="/#allocation">Allocation</a>
+        <a href="/#plus">Plus</a>
+        <a href="/guides/">Guides</a>
+        <a href="/#faq">FAQ</a>
+        <a href="https://status.plugged.host">Status</a>
+      </div>
+      <div class="nav-actions">
+        <button class="icon-button" type="button" data-theme-toggle aria-label="Switch theme" title="Switch theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.2A8.5 8.5 0 0 1 8.8 4 8.5 8.5 0 1 0 20 15.2Z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+        </button>
+        <a class="button small" href="https://panel.plugged.host">Open panel</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="page">
+    <div class="shell">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/guides/">Guides</a><span aria-hidden="true">/</span><span>Minecraft</span></nav>
+      <header class="page-head">
+        <h1>Install plugins, mods and modpacks</h1>
+        <p class="lead">The panel searches Modrinth, CurseForge and SpigotMC for you and installs the right file for your server's software and version.</p>
+        <p class="page-meta">Updated 12 October 2026</p>
+      </header>
+      <article class="prose">
+        <h2>Plugins or mods?</h2>
+        <p>It depends on the software you chose in the setup wizard:</p>
+        <ul>
+          <li><strong>Plugins</strong> run on Paper, Spigot and Purpur servers. They change the game on the server only, so players join with a normal Minecraft client. Good for permissions, economies, minigames, protection and anti-grief.</li>
+          <li><strong>Mods</strong> run on Fabric, Forge and NeoForge. Many add blocks, items and worlds that players need too, so they install the same mods (or the same modpack) on their side. Server-side mods, such as performance mods, need nothing on the player's side.</li>
+        </ul>
+        <p>Your server's page is called <strong>Plugins</strong> or <strong>Mods &amp; Modpacks</strong> to match. To switch software later, ask neo or install a modpack, which sets the right loader for you.</p>
+
+        <h2>Find and install</h2>
+        <ol>
+          <li>Open <strong>Plugins</strong> (or <strong>Mods &amp; Modpacks</strong>) in the server's menu.</li>
+          <li>Search, and narrow the list with the <strong>Source</strong> (Modrinth, CurseForge, and on plugin servers SpigotMC), <strong>Type</strong> and <strong>Minecraft version</strong> filters. Results already match your server's software.</li>
+          <li>Choose <strong>1-Click Install</strong> for the newest compatible version, or <strong>Versions</strong> to pick a specific one.</li>
+          <li>Restart the server. Plugins and mods load at start-up.</li>
+        </ol>
+        <p>Many plugins and mods depend on others, such as a library or an API. Read the project's page (the <strong>View on</strong> link in each row) and install what it lists.</p>
+
+        <h2>Modpacks</h2>
+        <p>On a Fabric, Forge or NeoForge server, search for modpacks and choose <strong>Install</strong>. The panel switches the server to the modpack's loader and Minecraft version, installs its mods and keeps your world. Your players install the same modpack, at the same version, in their launcher: the Modrinth App, the CurseForge app or Prism Launcher all work.</p>
+        <p>Take a <a href="/guides/backups-and-schedules">backup</a> before you install or change a modpack. A world that has been played with mods may not load without them.</p>
+
+        <h2>What's installed</h2>
+        <p>Under <strong>Installed on this server</strong>, the panel lists every jar in your plugins or mods folder, including ones you uploaded yourself, and works out what each one is: by its file hash, its CurseForge fingerprint, its name or the information inside the jar. For each one you can:</p>
+        <ul>
+          <li><strong>Update</strong> it to the newest compatible version.</li>
+          <li><strong>Disable</strong> it without deleting it, which is handy when you are hunting for the plugin that breaks something. <strong>Enable</strong> brings it back.</li>
+          <li><strong>Delete</strong> it, and if you want, the folder with its configuration too.</li>
+        </ul>
+        <p>Uploaded a jar over SFTP? Choose <strong>Rescan</strong> to see it in the list.</p>
+
+        <h2>When the server won't start after a change</h2>
+        <ol>
+          <li>Open the console and look for the first error; the log check above the console often names the culprit.</li>
+          <li>Disable the plugin or mod you added last and start again.</li>
+          <li>Check that it is built for your Minecraft version and loader. A Forge mod won't load on Fabric, and a mod for 1.20.1 won't load on 1.21.</li>
+          <li>Still stuck? <strong>Ask neo to fix it</strong>: it reads the log, finds the mod and can disable or replace it for you.</li>
+        </ol>
+      </article>
+      <section class="related" aria-labelledby="related-title">
+        <h2 id="related-title">Related guides</h2>
+        <div class="link-list">
+          <a href="/guides/minecraft-java-server"><strong>Create a free Minecraft Java server</strong><span>From an empty account to friends on your server: create it, run the setup wizard and share the address.</span></a>
+          <a href="/guides/bedrock-players-on-java"><strong>Let Bedrock players join your Java server</strong><span>One click adds Geyser and Floodgate, so players on phones, consoles and Windows join your Java server.</span></a>
+          <a href="/guides/minecraft-worlds"><strong>Upload, download or create a Minecraft world</strong><span>Bring a singleplayer world to your server, download it, switch worlds, or start fresh with your own seed.</span></a>
+          <a href="/guides/minecraft-subdomain"><strong>Give your server its own address</strong><span>Swap host-and-port addresses for a name like play.onplugged.host that players can remember.</span></a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <span>© <span data-year>2026</span> plugged.host · run by noprofit.space<span data-release hidden></span></span>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="/guides/">Guides</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="https://noprofit.space/terms">Terms</a>
+        <a href="https://noprofit.space/privacy">Privacy</a>
+        <a href="https://status.plugged.host">Status</a>
+        <a href="https://discord.gg/plugged-host-1502647500295635085">Discord</a>
+        <a href="https://panel.plugged.host">Panel</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How to create a free FiveM or RedM server on plugged.host, open txAdmin on its own port, add your Cfx.re license key and let players connect.">
+  <meta name="theme-color" content="#0b0d10">
+  <meta name="google-adsense-account" content="ca-pub-6451683229074986">
+  <link rel="canonical" href="https://plugged.host/guides/fivem-server">
+
+  <meta property="og:title" content="Set up a FiveM or RedM server with txAdmin · plugged.host">
+  <meta property="og:description" content="How to create a free FiveM or RedM server on plugged.host, open txAdmin on its own port, add your Cfx.re license key and let players connect.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://plugged.host/guides/fivem-server">
+  <meta property="og:image" content="https://plugged.host/assets/plugged.host-v3.png">
+  <title>Set up a FiveM or RedM server with txAdmin · plugged.host</title>
+  <link rel="icon" href="/assets/plugged.host-96-v3.png" type="image/png">
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/app.v5.css">
+  <script src="/assets/app.v5.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Primary">
+      <a class="brand" href="/" aria-label="plugged.host home">
+        <img src="/assets/plugged.host-96-v3.png" alt="" width="32" height="32">
+        <span>plugged<em>.</em>host</span>
+      </a>
+      <div class="nav-links">
+        <a href="/#neo">neo</a>
+        <a href="/#run">What you can run</a>
+        <a href="/#allocation">Allocation</a>
+        <a href="/#plus">Plus</a>
+        <a href="/guides/">Guides</a>
+        <a href="/#faq">FAQ</a>
+        <a href="https://status.plugged.host">Status</a>
+      </div>
+      <div class="nav-actions">
+        <button class="icon-button" type="button" data-theme-toggle aria-label="Switch theme" title="Switch theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.2A8.5 8.5 0 0 1 8.8 4 8.5 8.5 0 1 0 20 15.2Z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+        </button>
+        <a class="button small" href="https://panel.plugged.host">Open panel</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="page">
+    <div class="shell">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/guides/">Guides</a><span aria-hidden="true">/</span><span>Other games</span></nav>
+      <header class="page-head">
+        <h1>Set up a FiveM or RedM server with txAdmin</h1>
+        <p class="lead">plugged.host installs the CFX server for you and gives txAdmin a port of its own, so you finish the setup in your browser.</p>
+        <p class="page-meta">Updated 12 October 2026</p>
+      </header>
+      <article class="prose">
+        <h2>Before you start</h2>
+        <ul>
+          <li>A <a href="https://portal.cfx.re">Cfx.re account</a>. You use it to sign in to txAdmin and to create the server license key every FiveM and RedM server needs.</li>
+          <li>A plugged.host account. You sign in with a noprofit.space account; the first sign-in creates it.</li>
+        </ul>
+
+        <h2>1. Create the server</h2>
+        <ol>
+          <li>In the panel, choose <strong>Create server</strong>, give it a name and pick <strong>FiveM/RedM</strong> under Game.</li>
+          <li>Pick a location and a plan. A roleplay server with a framework and a few dozen resources wants at least <strong>Standard</strong> (two CPU threads, 4 GB of memory, 20 GB of disk); large frameworks need more.</li>
+          <li>Choose <strong>Deploy server</strong>.</li>
+        </ol>
+        <p>The panel gives a FiveM/RedM server two ports automatically: the game port, and the port right after it for the txAdmin web interface. Both are listed on the server's Network page. The <strong>Address</strong> on the Console, such as <code>de1.plugged.host:30120</code>, is the host name and the game port; the txAdmin port is also set as <strong>txAdmin port</strong> on the Startup page. Leave that value as it is: it has to match the second port.</p>
+
+        <h2>2. Open txAdmin</h2>
+        <ol>
+          <li>Press <strong>Start</strong> and watch the console. On the first start, txAdmin prints a PIN.</li>
+          <li>Open <code>http://&lt;host name&gt;:&lt;txAdmin port&gt;</code> in your browser: the host name from the Address on the Console, followed by the second port.</li>
+          <li>Enter the PIN, link your Cfx.re account and set a backup password for txAdmin.</li>
+        </ol>
+        <p class="note">The PIN only works once. If someone else could have seen it, restart the server to get a new one before you link your account.</p>
+
+        <h2>3. Run the setup wizard</h2>
+        <ol>
+          <li>Name your server.</li>
+          <li>Choose how to deploy it. A recipe, such as the default CFX server, QBCore or ESX for FiveM, or one of the RedM recipes, downloads a working base for you. If you already have a server, choose your existing files instead.</li>
+          <li>When txAdmin asks for a license key, create one at <a href="https://portal.cfx.re">portal.cfx.re</a> under <strong>Server Keys</strong> and paste it in. Keep the key private: anyone with it can run a server under your name.</li>
+          <li>If the recipe needs a database, create one in the panel first (see the <a href="/guides/databases">databases guide</a>) and give txAdmin its host, name, user and password.</li>
+          <li>Let txAdmin finish, then start the server from its dashboard.</li>
+        </ol>
+        <p>From then on, txAdmin manages the server: restarts, players, bans, resources and the live console. The panel's start and stop buttons start and stop txAdmin itself.</p>
+
+        <h2>4. Let players connect</h2>
+        <p>Players open FiveM (or RedM), press <code>F8</code> and type <code>connect</code> followed by the Address from the Console, for example <code>connect de1.plugged.host:30120</code>. That is the game port, not the txAdmin one. Once your server is listed in the server browser, they can also find it by name.</p>
+
+        <h2>Updating the server</h2>
+        <p>The <strong>FiveM Version</strong> variable on the Startup page decides which server build the installer downloads: <code>recommended</code> (the default, and the safe choice) or <code>latest</code>. Update resources and frameworks from txAdmin or over <a href="/guides/sftp">SFTP</a>, and take a <a href="/guides/backups-and-schedules">backup</a> first.</p>
+
+        <h2>When something goes wrong</h2>
+        <dl>
+          <dt>txAdmin doesn't load in the browser</dt>
+          <dd>Check that you used the second port and <code>http://</code>, not <code>https://</code>, and that the server is running.</dd>
+          <dt>Players see "server is not responding"</dt>
+          <dd>They are probably using the txAdmin port. The game port is the first one on the Network page.</dd>
+          <dt>The server stops during start-up</dt>
+          <dd>Read the txAdmin console: a missing or invalid license key and a resource that fails to load are the usual causes. You can also ask neo in the panel to look at the console with you.</dd>
+        </dl>
+      </article>
+      <section class="related" aria-labelledby="related-title">
+        <h2 id="related-title">Related guides</h2>
+        <div class="link-list">
+          <a href="/guides/minecraft-java-server"><strong>Create a free Minecraft Java server</strong><span>From an empty account to friends on your server: create it, run the setup wizard and share the address.</span></a>
+          <a href="/guides/minecraft-plugins-and-mods"><strong>Install plugins, mods and modpacks</strong><span>Browse Modrinth, CurseForge and SpigotMC from the panel, install in one click, and update or remove what's already there.</span></a>
+          <a href="/guides/bedrock-players-on-java"><strong>Let Bedrock players join your Java server</strong><span>One click adds Geyser and Floodgate, so players on phones, consoles and Windows join your Java server.</span></a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <span>© <span data-year>2026</span> plugged.host · run by noprofit.space<span data-release hidden></span></span>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="/guides/">Guides</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="https://noprofit.space/terms">Terms</a>
+        <a href="https://noprofit.space/privacy">Privacy</a>
+        <a href="https://status.plugged.host">Status</a>
+        <a href="https://discord.gg/plugged-host-1502647500295635085">Discord</a>
+        <a href="https://panel.plugged.host">Panel</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

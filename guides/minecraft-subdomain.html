@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How to give a plugged.host Minecraft or FiveM server an easy address like play.onplugged.host, so players join without typing a port.">
+  <meta name="theme-color" content="#0b0d10">
+  <meta name="google-adsense-account" content="ca-pub-6451683229074986">
+  <link rel="canonical" href="https://plugged.host/guides/minecraft-subdomain">
+
+  <meta property="og:title" content="Give your Minecraft server its own address · plugged.host">
+  <meta property="og:description" content="How to give a plugged.host Minecraft or FiveM server an easy address like play.onplugged.host, so players join without typing a port.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://plugged.host/guides/minecraft-subdomain">
+  <meta property="og:image" content="https://plugged.host/assets/plugged.host-v3.png">
+  <title>Give your Minecraft server its own address · plugged.host</title>
+  <link rel="icon" href="/assets/plugged.host-96-v3.png" type="image/png">
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/app.v5.css">
+  <script src="/assets/app.v5.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Primary">
+      <a class="brand" href="/" aria-label="plugged.host home">
+        <img src="/assets/plugged.host-96-v3.png" alt="" width="32" height="32">
+        <span>plugged<em>.</em>host</span>
+      </a>
+      <div class="nav-links">
+        <a href="/#neo">neo</a>
+        <a href="/#run">What you can run</a>
+        <a href="/#allocation">Allocation</a>
+        <a href="/#plus">Plus</a>
+        <a href="/guides/">Guides</a>
+        <a href="/#faq">FAQ</a>
+        <a href="https://status.plugged.host">Status</a>
+      </div>
+      <div class="nav-actions">
+        <button class="icon-button" type="button" data-theme-toggle aria-label="Switch theme" title="Switch theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.2A8.5 8.5 0 0 1 8.8 4 8.5 8.5 0 1 0 20 15.2Z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+        </button>
+        <a class="button small" href="https://panel.plugged.host">Open panel</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="page">
+    <div class="shell">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/guides/">Guides</a><span aria-hidden="true">/</span><span>Minecraft</span></nav>
+      <header class="page-head">
+        <h1>Give your server its own address</h1>
+        <p class="lead">Instead of an address like de1.plugged.host:30123, players can join with a name you choose, such as <code>play.onplugged.host</code>, and no port at all.</p>
+        <p class="page-meta">Updated 12 October 2026</p>
+      </header>
+      <article class="prose">
+        <h2>What you get</h2>
+        <p>A subdomain is a name under <code>onplugged.host</code> that points at your server. For Minecraft: Java Edition, it also carries the port, so players type only the name. It follows the server around: if you <a href="/guides/move-a-server">move the server</a> to another location, the subdomain updates itself and players keep using the same name.</p>
+        <p>Subdomains are available for Minecraft: Java Edition and FiveM/RedM servers.</p>
+
+        <h2>Before you start</h2>
+        <ul>
+          <li>Link your Discord account to your noprofit.space account at <a href="https://accounts.noprofit.space">accounts.noprofit.space</a>, and join the <a href="https://discord.gg/plugged-host-1502647500295635085">plugged.host Discord server</a>. Subdomains are a perk for members of the server.</li>
+          <li>Have some tokens. A subdomain takes a small token deposit, which grows with each extra subdomain on the same server. Tokens come from the Tokens page in the panel.</li>
+        </ul>
+
+        <h2>Create one</h2>
+        <ol>
+          <li>Open <strong>Subdomains</strong> in your server's menu.</li>
+          <li>Choose <strong>Create Subdomain</strong>.</li>
+          <li>Type a name, for example <code>play</code> or the name of your community. Letters, numbers and hyphens work best. A few names are reserved, such as <code>minecraft</code>, <code>mc</code> and <code>plugged</code>.</li>
+          <li>Save. The <strong>Connect With</strong> column shows what players type.</li>
+        </ol>
+        <p>New names usually work within a few minutes. If a player's game still can't find it, they can wait a little longer or restart the game, which clears its cached lookup.</p>
+        <p>A server can have up to three subdomains, for example one for your community name and one short one.</p>
+
+        <h2>How players join</h2>
+        <ul>
+          <li><strong>Java Edition:</strong> Multiplayer › Add Server, then the subdomain alone, such as <code>play.onplugged.host</code>.</li>
+          <li><strong>Bedrock players</strong> on a Java server with <a href="/guides/bedrock-players-on-java">Geyser</a>: the subdomain as the address and the Geyser port as the port.</li>
+          <li><strong>FiveM/RedM:</strong> <code>connect</code> followed by the subdomain and the game port.</li>
+        </ul>
+      </article>
+      <section class="related" aria-labelledby="related-title">
+        <h2 id="related-title">Related guides</h2>
+        <div class="link-list">
+          <a href="/guides/minecraft-java-server"><strong>Create a free Minecraft Java server</strong><span>From an empty account to friends on your server: create it, run the setup wizard and share the address.</span></a>
+          <a href="/guides/minecraft-plugins-and-mods"><strong>Install plugins, mods and modpacks</strong><span>Browse Modrinth, CurseForge and SpigotMC from the panel, install in one click, and update or remove what's already there.</span></a>
+          <a href="/guides/bedrock-players-on-java"><strong>Let Bedrock players join your Java server</strong><span>One click adds Geyser and Floodgate, so players on phones, consoles and Windows join your Java server.</span></a>
+          <a href="/guides/minecraft-worlds"><strong>Upload, download or create a Minecraft world</strong><span>Bring a singleplayer world to your server, download it, switch worlds, or start fresh with your own seed.</span></a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <span>© <span data-year>2026</span> plugged.host · run by noprofit.space<span data-release hidden></span></span>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="/guides/">Guides</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="https://noprofit.space/terms">Terms</a>
+        <a href="https://noprofit.space/privacy">Privacy</a>
+        <a href="https://status.plugged.host">Status</a>
+        <a href="https://discord.gg/plugged-host-1502647500295635085">Discord</a>
+        <a href="https://panel.plugged.host">Panel</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

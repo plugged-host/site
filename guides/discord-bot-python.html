@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How to run a discord.py bot on plugged.host for free: create a Python server, upload your code, install requirements.txt, keep the token in a .env file and start it.">
+  <meta name="theme-color" content="#0b0d10">
+  <meta name="google-adsense-account" content="ca-pub-6451683229074986">
+  <link rel="canonical" href="https://plugged.host/guides/discord-bot-python">
+
+  <meta property="og:title" content="Host a Discord bot with Python · plugged.host">
+  <meta property="og:description" content="How to run a discord.py bot on plugged.host for free: create a Python server, upload your code, install requirements.txt, keep the token in a .env file and start it.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://plugged.host/guides/discord-bot-python">
+  <meta property="og:image" content="https://plugged.host/assets/plugged.host-v3.png">
+  <title>Host a Discord bot with Python · plugged.host</title>
+  <link rel="icon" href="/assets/plugged.host-96-v3.png" type="image/png">
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/app.v5.css">
+  <script src="/assets/app.v5.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Primary">
+      <a class="brand" href="/" aria-label="plugged.host home">
+        <img src="/assets/plugged.host-96-v3.png" alt="" width="32" height="32">
+        <span>plugged<em>.</em>host</span>
+      </a>
+      <div class="nav-links">
+        <a href="/#neo">neo</a>
+        <a href="/#run">What you can run</a>
+        <a href="/#allocation">Allocation</a>
+        <a href="/#plus">Plus</a>
+        <a href="/guides/">Guides</a>
+        <a href="/#faq">FAQ</a>
+        <a href="https://status.plugged.host">Status</a>
+      </div>
+      <div class="nav-actions">
+        <button class="icon-button" type="button" data-theme-toggle aria-label="Switch theme" title="Switch theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.2A8.5 8.5 0 0 1 8.8 4 8.5 8.5 0 1 0 20 15.2Z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+        </button>
+        <a class="button small" href="https://panel.plugged.host">Open panel</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="page">
+    <div class="shell">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/guides/">Guides</a><span aria-hidden="true">/</span><span>Bots and apps</span></nav>
+      <header class="page-head">
+        <h1>Host a Discord bot with Python</h1>
+        <p class="lead">Run a discord.py bot, or any other Python program, on plugged.host so it keeps running without your own computer.</p>
+        <p class="page-meta">Updated 12 October 2026</p>
+      </header>
+      <article class="prose">
+        <h2>Before you start</h2>
+        <ul>
+          <li>A bot application in the <a href="https://discord.com/developers/applications">Discord Developer Portal</a>, and its token (your application › <strong>Bot</strong> › <strong>Reset Token</strong>). Turn on the privileged intents your code needs on the same page, such as Message Content.</li>
+          <li>Your bot's code and a <code>requirements.txt</code> that lists its packages, for example <code>discord.py</code>.</li>
+          <li>A plugged.host account. You sign in with a noprofit.space account; the first sign-in creates it.</li>
+        </ul>
+
+        <h2>1. Create the server</h2>
+        <ol>
+          <li>Open the panel at <a href="https://panel.plugged.host">panel.plugged.host</a> and choose <strong>Create server</strong>.</li>
+          <li>Give it a name and pick <strong>python generic</strong> under Game.</li>
+          <li>Pick a location, then a plan. <strong>Starter</strong> (one CPU thread, 2 GB of memory, 10 GB of disk) runs most bots comfortably.</li>
+          <li>Choose <strong>Deploy server</strong>. The panel installs Python and opens the server's console.</li>
+        </ol>
+
+        <h2>2. Put your code on the server</h2>
+        <p>Upload your project on the <strong>Files</strong> page, or as a <code>.zip</code> that you unpack on the server. Leave virtual environments such as <code>venv/</code> out: the server installs your packages itself. For many files, <a href="/guides/sftp">connect over SFTP</a> instead.</p>
+        <p>If the bot lives in a Git repository, fill in <strong>Git Repo Address</strong> and <strong>Git Branch</strong> on the Startup page, plus <strong>Git Username</strong> and a <strong>Git Access Token</strong> for a private repository. The repository is cloned when the server is installed, into an empty folder, so set these on a fresh server and reinstall it from <strong>Settings</strong>. With <strong>Auto Update</strong> set to <code>1</code>, the server runs <code>git pull</code> before every start.</p>
+
+        <h2>3. Keep the token out of your code</h2>
+        <p>Create a file named <code>.env</code> next to your code on the Files page:</p>
+        <pre><code>DISCORD_TOKEN=paste-your-token-here</code></pre>
+        <p>Add <code>python-dotenv</code> to <code>requirements.txt</code>, next to <code>discord.py</code>, and load the file before you read the token:</p>
+        <pre><code>import os
+import discord
+from dotenv import load_dotenv
+
+load_dotenv()
+
+intents = discord.Intents.default()
+client = discord.Client(intents=intents)
+
+@client.event
+async def on_ready():
+    print(f"Logged in as {client.user}")
+
+client.run(os.environ["DISCORD_TOKEN"])</code></pre>
+        <p>Keep <code>.env</code> out of Git with a line in <code>.gitignore</code>. If the token ever leaks, reset it in the Developer Portal and paste the new one into <code>.env</code>.</p>
+
+        <h2>4. Tell the server what to run</h2>
+        <p>On the Startup page:</p>
+        <ul>
+          <li><strong>App py file</strong> is the file the server runs, <code>app.py</code> by default. Set it to your entry point, such as <code>bot.py</code> or <code>main.py</code>.</li>
+          <li><strong>Requirements file</strong> is <code>requirements.txt</code> by default. The server installs everything in it before each start.</li>
+          <li><strong>Docker Image</strong> picks the Python version, from 3.7 to 3.14. Current discord.py needs 3.8 or newer; pick the version you develop on.</li>
+          <li><strong>Additional Python packages</strong> installs extra packages, separated by spaces, before each start. Prefer <code>requirements.txt</code>, which keeps the list with your code.</li>
+        </ul>
+
+        <h2>5. Start it</h2>
+        <p>Press <strong>Start</strong>. The server upgrades and installs the packages from your requirements file, then runs your file. When the console prints <code>Logged in as YourBot#1234</code>, the bot is online. Packages are installed into a <code>.local</code> folder in the server, so don't delete it unless you want a clean reinstall of them.</p>
+
+        <h2>Idle servers</h2>
+        <p>Free capacity is shared, so a server nobody has used for two days is stopped to make room. "Used" means activity in the panel: starting or stopping it, the console, files, backups, and anything your subusers or neo do there. Start it again from the panel and it carries on as before. If it stays idle for longer, it can be moved into hibernation; its Console then offers <strong>Restore server</strong>, which brings it back for a few tokens.</p>
+
+        <h2>When it doesn't start</h2>
+        <dl>
+          <dt><code>ModuleNotFoundError: No module named 'discord'</code></dt>
+          <dd>The package is missing from <code>requirements.txt</code>, or the file has another name than the one in <strong>Requirements file</strong>. The package is called <code>discord.py</code>, imported as <code>discord</code>.</dd>
+          <dt><code>KeyError: 'DISCORD_TOKEN'</code></dt>
+          <dd><code>.env</code> was not found or not loaded. Check the file name, that it sits next to your main file, and that <code>load_dotenv()</code> runs before you read the variable.</dd>
+          <dt><code>PrivilegedIntentsRequired</code></dt>
+          <dd>Your code asks for an intent that is switched off. Turn it on under <strong>Bot</strong> in the Developer Portal.</dd>
+          <dt><code>can't open file '/home/container/app.py'</code></dt>
+          <dd><strong>App py file</strong> still says <code>app.py</code>. Set it to your entry file. neo in the panel can find and fix problems like this for you.</dd>
+        </dl>
+      </article>
+      <section class="related" aria-labelledby="related-title">
+        <h2 id="related-title">Related guides</h2>
+        <div class="link-list">
+          <a href="/guides/discord-bot-nodejs"><strong>Host a Discord bot with Node.js</strong><span>Upload or clone your bot, keep its token out of the code, and run it without your own computer.</span></a>
+          <a href="/guides/minecraft-java-server"><strong>Create a free Minecraft Java server</strong><span>From an empty account to friends on your server: create it, run the setup wizard and share the address.</span></a>
+          <a href="/guides/minecraft-plugins-and-mods"><strong>Install plugins, mods and modpacks</strong><span>Browse Modrinth, CurseForge and SpigotMC from the panel, install in one click, and update or remove what's already there.</span></a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <span>© <span data-year>2026</span> plugged.host · run by noprofit.space<span data-release hidden></span></span>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="/guides/">Guides</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="https://noprofit.space/terms">Terms</a>
+        <a href="https://noprofit.space/privacy">Privacy</a>
+        <a href="https://status.plugged.host">Status</a>
+        <a href="https://discord.gg/plugged-host-1502647500295635085">Discord</a>
+        <a href="https://panel.plugged.host">Panel</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
