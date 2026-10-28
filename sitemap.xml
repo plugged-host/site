@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://plugged.host/</loc><lastmod>2026-10-12</lastmod></url>
-  <url><loc>https://plugged.host/guides/</loc><lastmod>2026-10-12</lastmod></url>
-  <url><loc>https://plugged.host/guides/minecraft-java-server</loc><lastmod>2026-10-12</lastmod></url>
+  <url><loc>https://plugged.host/</loc><lastmod>2026-10-28</lastmod></url>
+  <url><loc>https://plugged.host/guides/</loc><lastmod>2026-10-28</lastmod></url>
+  <url><loc>https://plugged.host/guides/minecraft-java-server</loc><lastmod>2026-10-28</lastmod></url>
   <url><loc>https://plugged.host/guides/minecraft-plugins-and-mods</loc><lastmod>2026-10-12</lastmod></url>
   <url><loc>https://plugged.host/guides/bedrock-players-on-java</loc><lastmod>2026-10-12</lastmod></url>
   <url><loc>https://plugged.host/guides/minecraft-worlds</loc><lastmod>2026-10-12</lastmod></url>
@@ -15,10 +15,10 @@
   <url><loc>https://plugged.host/guides/sftp</loc><lastmod>2026-10-12</lastmod></url>
   <url><loc>https://plugged.host/guides/backups-and-schedules</loc><lastmod>2026-10-12</lastmod></url>
   <url><loc>https://plugged.host/guides/databases</loc><lastmod>2026-10-12</lastmod></url>
-  <url><loc>https://plugged.host/guides/move-a-server</loc><lastmod>2026-10-12</lastmod></url>
-  <url><loc>https://plugged.host/guides/neo</loc><lastmod>2026-10-12</lastmod></url>
+  <url><loc>https://plugged.host/guides/move-a-server</loc><lastmod>2026-10-28</lastmod></url>
+  <url><loc>https://plugged.host/guides/neo</loc><lastmod>2026-10-28</lastmod></url>
   <url><loc>https://plugged.host/guides/share-a-server</loc><lastmod>2026-10-12</lastmod></url>
-  <url><loc>https://plugged.host/guides/resources-and-credits</loc><lastmod>2026-10-12</lastmod></url>
-  <url><loc>https://plugged.host/about</loc><lastmod>2026-10-12</lastmod></url>
+  <url><loc>https://plugged.host/guides/resources-and-credits</loc><lastmod>2026-10-28</lastmod></url>
+  <url><loc>https://plugged.host/about</loc><lastmod>2026-10-28</lastmod></url>
   <url><loc>https://plugged.host/contact</loc><lastmod>2026-10-12</lastmod></url>
 </urlset>
