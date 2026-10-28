@@ -3,7 +3,7 @@
 
    Compiled locally to the committed assets/app.v5.css (no host build step):
      export PATH="/root/.nvm/versions/node/v26.9.0/bin:$PATH"
-     cd /var/www/html && npm install && npm run build:css
+     cd /var/www/plugged.host/site && npm install && npm run build:css
 
    The CSP is style-src 'self' with no 'unsafe-inline', so nothing here or in
    app.v5.js may emit an inline <style> or a style="" attribute. The only
